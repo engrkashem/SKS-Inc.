@@ -9,10 +9,12 @@ import Blogs from './Components/Blogs/Blogs';
 import Login from './Components/Auth/Login';
 import Register from './Components/Auth/Register';
 import NotFound from './Components/NotFound/NotFound';
+import Navbar from './Components/Shared/Navbar';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App max-w-7xl mx-auto">
+      <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/home' element={<Home />}></Route>
