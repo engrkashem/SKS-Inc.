@@ -1,35 +1,37 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import bg from '../../images/bg-auth.jpg';
+import auth from '../../firebase.init';
 
 const Register = () => {
 
-    // const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    // const [
-    //     createUserWithEmailAndPassword,
-    //     user,
-    //     loading,
-    //     error,
-    // ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
-    // const [updateProfile, updating, uError] = useUpdateProfile(auth);
+    const [updateProfile, updating, uError] = useUpdateProfile(auth);
 
     const navigate = useNavigate();
 
     // const [token] = useToken(user || gUser);
 
-    // if (loading || gLoading || updating) {
-    //     return <button className="btn loading">loading</button>;
-    // }
+    if (loading || gLoading || updating) {
+        return <button className="btn loading">loading</button>;
+    }
 
     let errorMessage;
-    // if (error || gError || uError) {
-    //     errorMessage = <p className='text-rose-500'>{error?.message || gError?.message || uError?.message}</p>;
-    // }
+    if (error || gError || uError) {
+        errorMessage = <p className='text-rose-500'>{error?.message || gError?.message || uError?.message}</p>;
+    }
 
     // if (token) {
     //     // console.log(user);
@@ -145,7 +147,7 @@ const Register = () => {
                     <p className=' font-semibold mt-5'>Already User to SKS Inc.? <Link to={'/login'} className=' text-secondary'> Please Login</Link></p>
 
                     <div className="divider">OR</div>
-                    {/* <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-accent uppercase">Continue with google</button> */}
+                    <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-secondary uppercase">Continue with google</button>
                 </div>
             </div>
         </div>

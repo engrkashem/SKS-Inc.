@@ -1,23 +1,25 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import bg from '../../images/bg-auth.jpg';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit, getValues } = useForm();
 
-    // const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
-    // const [
-    //     signInWithEmailAndPassword,
-    //     user,
-    //     loading,
-    //     error,
-    // ] = useSignInWithEmailAndPassword(auth);
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
 
-    // const [sendPasswordResetEmail, sending, rError] = useSendPasswordResetEmail(
-    //     auth
-    // );
+    const [sendPasswordResetEmail, sending, rError] = useSendPasswordResetEmail(
+        auth
+    );
 
     // const [token] = useToken(user || gUser);
 
@@ -31,14 +33,14 @@ const Login = () => {
     //     }
     // }, [token, from, navigate]);
 
-    // if (loading || gLoading || sending) {
-    //     return <button className="btn loading">loading</button>;
-    // }
+    if (loading || gLoading || sending) {
+        return <button className="btn loading">loading</button>;
+    }
 
     let errorMessage;
-    // if (error || gError || rError) {
-    //     errorMessage = <p className='text-rose-500'>{error?.message || gError?.message || rError?.message}</p>;
-    // }
+    if (error || gError || rError) {
+        errorMessage = <p className='text-rose-500'>{error?.message || gError?.message || rError?.message}</p>;
+    }
 
     const onSubmit = data => {
         // console.log(data);
@@ -132,7 +134,7 @@ const Login = () => {
                     <p className=' font-semibold mt-5'>New to SKS Inc.? <Link to={'/register'} className=' text-secondary'>Create New Account</Link></p>
 
                     <div className="divider">OR</div>
-                    {/* <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-accent uppercase">Continue with google</button> */}
+                    <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-secondary uppercase">Continue with google</button>
                 </div>
             </div>
         </div>
