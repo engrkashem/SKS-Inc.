@@ -32,13 +32,13 @@ const Footer = () => {
                         </label>
                         <div className="relative">
                             <input type="text" placeholder="example@site.com" className="input input-bordered w-full pr-16" />
-                            <button className="btn btn-primary absolute top-0 right-0 rounded-l-none">Subscribe</button>
+                            <button className="btn bg-rose-600 absolute top-0 right-0 rounded-l-none">Subscribe</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="divider-vertical shadow-lg mt-5"></div>
-            <div className='mt-2'>
+            <div className='mt-2 text-center'>
                 <p><small>Copy Right &#9400; {new Date().getFullYear()} : All Right Reserved to SKS Inc.</small></p>
             </div>
         </footer>
