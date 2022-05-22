@@ -12,7 +12,7 @@ import Navbar from './Components/Shared/Navbar';
 
 function App() {
   return (
-    <div className="App max-w-7xl mx-auto">
+    <div className=" max-w-7xl mx-auto">
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home />}></Route>

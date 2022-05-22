@@ -1,12 +1,12 @@
 import React from 'react';
 import Footer from '../Shared/Footer';
 import '../../styles/CustomButton.css';
+import Banner from './Banner';
 
 const Home = () => {
     return (
         <div>
-
-            <h2>Home</h2>
+            <Banner></Banner>
             <Footer></Footer>
         </div>
     );
