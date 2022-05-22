@@ -6,7 +6,7 @@ const CustomActiveLink = ({ children }) => {
         <NavLink
             to={children}
             className={({ isActive }) =>
-                isActive ? ' bg-blue-500 uppercase h-full block' : 'uppercase'
+                isActive ? ' bg-primary uppercase h-full block font-semibold' : 'uppercase font-semibold'
             }
         >
             {children}

@@ -27,8 +27,8 @@ const Navbar = () => {
                     {links}
                 </ul>
             </div>
-            <div className="navbar-end">
-                <Link to={'login'} className="btn">Login</Link>
+            <div className="navbar-end ">
+                <Link to={'login'} className="btn  custom-button">Login</Link>
             </div>
         </div>
     );

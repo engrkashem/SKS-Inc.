@@ -1,5 +1,6 @@
 import React from 'react';
 import Footer from '../Shared/Footer';
+import '../../styles/CustomButton.css';
 
 const Home = () => {
     return (
