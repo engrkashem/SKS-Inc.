@@ -6,6 +6,7 @@ import bg from '../../images/bg-auth.jpg';
 import auth from '../../firebase.init';
 import Loader from '../Shared/Loader';
 import { toast } from 'react-toastify';
+import useSecretToken from '../../hooks/useSecretToken';
 
 const Register = () => {
 
@@ -24,7 +25,7 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    // const [token] = useToken(user || gUser);
+    const [token] = useSecretToken(user || gUser);
 
     if (loading || gLoading || updating) {
         return <Loader></Loader>;

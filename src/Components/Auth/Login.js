@@ -6,6 +6,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWith
 import bg from '../../images/bg-auth.jpg';
 import Loader from '../Shared/Loader';
 import { toast } from 'react-toastify';
+import useSecretToken from '../../hooks/useSecretToken';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit, getValues, reset } = useForm();
@@ -21,7 +22,7 @@ const Login = () => {
 
     const [sendPasswordResetEmail, sending, rError] = useSendPasswordResetEmail(auth);
 
-    // const [token] = useToken(user || gUser);
+    const [token] = useSecretToken(user || gUser);
 
     // const navigate = useNavigate();
     // const location = useLocation();

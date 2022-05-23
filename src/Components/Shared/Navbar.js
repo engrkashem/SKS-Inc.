@@ -18,6 +18,7 @@ const Navbar = () => {
 
     const logout = () => {
         signOut(auth);
+        localStorage.removeItem('secretToken');
     }
 
     if (loading) {
