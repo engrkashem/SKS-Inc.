@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import bg from '../../images/bg-auth.jpg';
@@ -24,15 +24,15 @@ const Login = () => {
 
     const [token] = useSecretToken(user || gUser);
 
-    // const navigate = useNavigate();
-    // const location = useLocation();
-    // let from = location.state?.from?.pathname || "/";
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
-    // useEffect(() => {
-    //     if (token) {
-    //         navigate(from, { replace: true });
-    //     }
-    // }, [token, from, navigate]);
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate]);
 
     if (loading || gLoading || sending) {
         return <Loader></Loader>;

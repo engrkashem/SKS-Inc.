@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
@@ -27,6 +27,13 @@ const Register = () => {
 
     const [token] = useSecretToken(user || gUser);
 
+    useEffect(() => {
+        if (token) {
+            // console.log(user);
+            navigate('/home');
+        }
+    }, [token, navigate]);
+
     if (loading || gLoading || updating) {
         return <Loader></Loader>;
     }
@@ -36,10 +43,7 @@ const Register = () => {
         errorMessage = <p className='text-rose-500'>{error?.message || gError?.message || uError?.message}</p>;
     }
 
-    // if (token) {
-    //     // console.log(user);
-    //     navigate('/appointment');
-    // }
+
 
     const onSubmit = async data => {
         // console.log(data);
