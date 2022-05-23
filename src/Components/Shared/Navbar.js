@@ -8,6 +8,7 @@ import Loader from './Loader';
 
 const Navbar = () => {
     const [user, loading] = useAuthState(auth);
+    // console.log(user)
 
     const links = <>
         <li><CustomActiveLink>home</CustomActiveLink></li>

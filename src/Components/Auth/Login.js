@@ -5,9 +5,10 @@ import auth from '../../firebase.init';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import bg from '../../images/bg-auth.jpg';
 import Loader from '../Shared/Loader';
+import { toast } from 'react-toastify';
 
 const Login = () => {
-    const { register, formState: { errors }, handleSubmit, getValues } = useForm();
+    const { register, formState: { errors }, handleSubmit, getValues, reset } = useForm();
 
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
@@ -18,9 +19,7 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    const [sendPasswordResetEmail, sending, rError] = useSendPasswordResetEmail(
-        auth
-    );
+    const [sendPasswordResetEmail, sending, rError] = useSendPasswordResetEmail(auth);
 
     // const [token] = useToken(user || gUser);
 
@@ -44,14 +43,20 @@ const Login = () => {
     }
 
     const onSubmit = data => {
-        // console.log(data);
-        // signInWithEmailAndPassword(data.email, data.password);
+        const { email, password } = data;
+        signInWithEmailAndPassword(email, password);
+        if (user) {
+            reset();
+        }
     };
 
     const resetPassword = async () => {
         const email = getValues('email');
-        console.log(email)
-        // await sendPasswordResetEmail(email);
+        // console.log(email)
+        await sendPasswordResetEmail(email);
+        if (!rError) {
+            toast('Password Reset Email has been sent to your Email.');
+        }
     }
 
     return (
@@ -130,7 +135,7 @@ const Login = () => {
                         <input className='btn btn-outline btn-secondary w-1/2 mx-auto block' type="submit" value='LOGIN' />
                     </form>
                     {errorMessage}
-                    <p onClick={resetPassword} className=' font-semibold mt-5'>Forgot Password?<button className=' text-secondary btn btn-link'> Reset Password</button></p>
+                    <p className=' font-semibold mt-5'>Forgot Password?<button onClick={resetPassword} className=' text-secondary btn btn-link'> Reset Password</button></p>
 
                     <p className=' font-semibold mt-5'>New to SKS Inc.? <Link to={'/register'} className=' text-secondary'>Create New Account</Link></p>
 

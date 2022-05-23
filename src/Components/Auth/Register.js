@@ -11,7 +11,7 @@ const Register = () => {
 
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
     const [
         createUserWithEmailAndPassword,
@@ -41,11 +41,14 @@ const Register = () => {
     // }
 
     const onSubmit = async data => {
-        console.log(data);
+        // console.log(data);
         const { name, email, password } = data;
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
         toast.success('Your Profile is Updated.');
+        if (user) {
+            reset();
+        }
         navigate('/home');
     };
 
