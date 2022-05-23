@@ -9,6 +9,8 @@ import Login from './Components/Auth/Login';
 import Register from './Components/Auth/Register';
 import NotFound from './Components/NotFound/NotFound';
 import Navbar from './Components/Shared/Navbar';
+import Purchase from './Components/Purchase/Purchase';
+import RequireAuth from './Components/Auth/RequireAuth';
 
 function App() {
   return (
@@ -17,6 +19,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/home' element={<Home />}></Route>
+        <Route path='/purchase'
+          element={<RequireAuth><Purchase /></RequireAuth>}>
+        </Route>
         <Route path='/dashboard' element={<Dashboard />}></Route>
         <Route path='/blogs' element={<Blogs />}></Route>
         <Route path='/login' element={<Login />}></Route>
