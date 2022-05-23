@@ -1,14 +1,28 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink } from 'react-router-dom';
+import auth from '../../firebase.init';
 import CustomActiveLink from './CustomActiveLink';
+import Loader from './Loader';
 
 const Navbar = () => {
+    const [user, loading] = useAuthState(auth);
+
     const links = <>
         <li><CustomActiveLink>home</CustomActiveLink></li>
         <li><CustomActiveLink>dashboard</CustomActiveLink></li>
         <li><CustomActiveLink>blogs</CustomActiveLink></li>
-
     </>
+
+    const logout = () => {
+        signOut(auth);
+    }
+
+    if (loading) {
+        return <Loader></Loader>
+    }
+
     return (
         <div className="navbar bg-slate-900 text-white">
             <div className="navbar-start">
@@ -28,7 +42,11 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end ">
-                <Link to={'login'} className="btn  custom-button">Login</Link>
+                {
+                    user ? <Link onClick={logout} to={'/'} className="btn  custom-button">Log Out</Link>
+                        : <Link to={'login'} className="btn  custom-button">Login</Link>
+                }
+
             </div>
         </div>
     );

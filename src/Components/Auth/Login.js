@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import bg from '../../images/bg-auth.jpg';
+import Loader from '../Shared/Loader';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit, getValues } = useForm();
@@ -34,7 +35,7 @@ const Login = () => {
     // }, [token, from, navigate]);
 
     if (loading || gLoading || sending) {
-        return <button className="btn loading">loading</button>;
+        return <Loader></Loader>;
     }
 
     let errorMessage;

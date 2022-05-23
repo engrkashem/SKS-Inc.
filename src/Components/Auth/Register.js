@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import bg from '../../images/bg-auth.jpg';
 import auth from '../../firebase.init';
+import Loader from '../Shared/Loader';
+import { toast } from 'react-toastify';
 
 const Register = () => {
 
@@ -25,7 +27,7 @@ const Register = () => {
     // const [token] = useToken(user || gUser);
 
     if (loading || gLoading || updating) {
-        return <button className="btn loading">loading</button>;
+        return <Loader></Loader>;
     }
 
     let errorMessage;
@@ -39,10 +41,12 @@ const Register = () => {
     // }
 
     const onSubmit = async data => {
-        // console.log(data);
-        // await createUserWithEmailAndPassword(data.email, data.password);
-        // await updateProfile({ displayName: data.name });
-
+        console.log(data);
+        const { name, email, password } = data;
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name });
+        toast.success('Your Profile is Updated.');
+        navigate('/home');
     };
 
 
