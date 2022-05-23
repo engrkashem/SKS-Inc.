@@ -7,7 +7,8 @@ const useSecretToken = user => {
         // console.log(user);
         const email = user?.user?.email;
         const presentUser = { email: email };
-        const url = `http://localhost:5000/user/${email}`;
+        // const url = `http://localhost:5000/user/${email}`;
+        const url = `https://agile-badlands-34653.herokuapp.com/user/${email}`;
         if (email) {
             fetch(url, {
                 method: 'PUT',
