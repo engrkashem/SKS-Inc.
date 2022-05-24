@@ -7,7 +7,7 @@ const ActiveLink = ({ children }) => {
         <NavLink
             to={`/dashboard/${children.split(',')[1]}`}
             className={({ isActive }) =>
-                isActive ? 'bg-red-500' : ''
+                isActive ? 'border border-rose-600 text-rose-600' : ''
             }
         >
             {children.split(',')[0]}

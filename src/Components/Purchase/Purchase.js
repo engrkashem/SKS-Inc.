@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Loader from '../Shared/Loader';
 import bgPurchase from '../../images/bg-purchase.jpg';
 import { useForm } from 'react-hook-form';
@@ -24,6 +24,8 @@ const Purchase = () => {
 
     const [buttonStatus, setButtonStatus] = useState('');
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         if (!isLoading) {
             let defaultValues = {};
@@ -38,7 +40,6 @@ const Purchase = () => {
 
     const { name, price, moq, description, quantity } = tool;
 
-
     const onSubmit = data => {
         setButtonStatus('active');
         const { orderQty, address, email, name, phone } = data;
@@ -46,6 +47,9 @@ const Purchase = () => {
         if (parseInt(orderQty) >= parseInt(moq) && parseInt(orderQty) <= parseInt(quantity)) {
             const date = new Date();
             const formatedDate = format(date, 'PP');
+            const amount = parseInt(orderQty) * parseInt(price);
+            const vat = amount * 0.15;
+            const total = (amount + vat).toFixed(2);
             const order = {
                 clientName: name,
                 email,
@@ -53,8 +57,12 @@ const Purchase = () => {
                 address,
                 orderQty,
                 toolName: tool.name,
-                date: formatedDate
+                date: formatedDate,
+                amount,
+                vat,
+                total
             }
+
             //put is use to avoid unwanted click or double click.
             // const url = `http://localhost:5000/order`;
             const url = `https://agile-badlands-34653.herokuapp.com/order`;
@@ -69,6 +77,7 @@ const Purchase = () => {
                 .then(orderRes => {
                     if (orderRes.upsertedCount) {
                         toast('Your Order is Placed Successfully. Please Pay to Confirm Order.');
+                        navigate('/dashboard/my-orders');
                     }
                     // console.log(orderRes);
                 })
