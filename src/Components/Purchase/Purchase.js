@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import Loader from '../Shared/Loader';
@@ -6,18 +6,22 @@ import bgPurchase from '../../images/bg-purchase.jpg';
 import { useForm } from 'react-hook-form';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import { toast } from 'react-toastify';
 
 const Purchase = () => {
-    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm({ mode: 'onChange' });
 
     const [user, loading] = useAuthState(auth);
     const { displayName, email } = user;
+    // console.log(user)
 
     const { id } = useParams();
     // const url = `http://localhost:5000/tool/${id}`
     const url = `https://agile-badlands-34653.herokuapp.com/tool/${id}`
 
-    const { data: tool, isLoading } = useQuery('toolById', () => fetch(url).then(res => res.json()));
+    const { data: tool, isLoading } = useQuery(['toolById', user], () => fetch(url).then(res => res.json()));
+
+    const [buttonStatus, setButtonStatus] = useState('')
 
     useEffect(() => {
         if (!isLoading) {
@@ -36,13 +40,16 @@ const Purchase = () => {
 
     const onSubmit = data => {
         const { orderQty } = data;
-        if (orderQty >= moq) {
-
+        if (orderQty >= moq && quantity >= orderQty) {
+            setButtonStatus('');
+            console.log(data);
         }
         else {
+            setButtonStatus('cursor-not-allowed opacity-50');
 
+            toast.error('Your Oder Quantity must be greater than Minimum Order Quantity and less than Available Stock.');
         }
-        console.log(orderQty)
+
     }
 
     return (
@@ -77,7 +84,7 @@ const Purchase = () => {
                                     placeholder="Your Name" className="input input-bordered w-full "
                                     {...register("name")}
                                     value={displayName}
-                                    disabled
+                                    readOnly
                                 />
                             </div>
                             <div className="form-control ">
@@ -85,7 +92,7 @@ const Purchase = () => {
                                     type="email"
                                     placeholder="Your Email" className="input input-bordered w-full mt-2"
                                     {...register("email")}
-                                    value={email} disabled
+                                    value={email} readOnly
                                 />
                             </div>
                             <div className="form-control ">
@@ -132,7 +139,7 @@ const Purchase = () => {
                                     </span>}
                                 </label>
                             </div>
-                            <input className='btn  btn-info mx-auto block' type="submit" value='Confirm & Proceed To Pay' />
+                            <input className={`btn  btn-info mx-auto block ${buttonStatus}`} type="submit" value='Confirm & Proceed To Pay' />
                         </form>
                     </div>
                 </div>
