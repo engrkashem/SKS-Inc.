@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Tools = ({ tool: { name, price, moq, description, manufacturer, img, quantity } }) => {
+const Tools = ({ tool: { name, price, moq, description, _id, img, quantity } }) => {
 
     const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const Tools = ({ tool: { name, price, moq, description, manufacturer, img, quant
                 <p>Stock Available: <span className=' text-2xl font-semibold text-teal-300'>{quantity}</span> pcs.</p>
                 <p>Price: <span className=' text-2xl font-semibold text-teal-300'>$ {price}</span> per pcs.</p>
                 <div className="card-actions justify-center mt-5">
-                    <button onClick={() => navigate('/purchase')} className="btn btn-accent">Confirm Order</button>
+                    <button onClick={() => navigate(`/purchase/${_id}`)} className="btn btn-accent">Purchase</button>
                 </div>
             </div>
         </div>
