@@ -39,14 +39,14 @@ const Purchase = () => {
 
 
     const onSubmit = data => {
+        setButtonStatus('active');
         const { orderQty } = data;
-        if (orderQty >= moq && quantity >= orderQty) {
-            setButtonStatus('');
+
+        if (parseInt(orderQty) >= parseInt(moq) && parseInt(orderQty) <= parseInt(quantity)) {
             console.log(data);
         }
         else {
             setButtonStatus('cursor-not-allowed opacity-50');
-
             toast.error('Your Oder Quantity must be greater than Minimum Order Quantity and less than Available Stock.');
         }
 
