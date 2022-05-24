@@ -14,7 +14,8 @@ const Purchase = () => {
     const { displayName, email } = user;
 
     const { id } = useParams();
-    const url = `http://localhost:5000/tool/${id}`
+    // const url = `http://localhost:5000/tool/${id}`
+    const url = `https://agile-badlands-34653.herokuapp.com/tool/${id}`
 
     const { data: tool, isLoading } = useQuery('toolById', () => fetch(url).then(res => res.json()));
 
