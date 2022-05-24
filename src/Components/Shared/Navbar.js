@@ -12,7 +12,13 @@ const Navbar = () => {
 
     const links = <>
         <li><CustomActiveLink>home</CustomActiveLink></li>
-        <li><CustomActiveLink>dashboard</CustomActiveLink></li>
+        {
+            user ?
+                <li>
+                    <CustomActiveLink>dashboard</CustomActiveLink>
+                </li>
+                : ''
+        }
         <li><CustomActiveLink>blogs</CustomActiveLink></li>
     </>
 
@@ -45,7 +51,10 @@ const Navbar = () => {
             </div>
             <div className="navbar-end ">
                 {
-                    user ? <Link onClick={logout} to={'/'} className="btn  custom-button">Log Out</Link>
+                    user ? <>
+                        <p className='mr-2 text-xl font-semibold hidden md:block'>{user.displayName}</p>
+                        <Link onClick={logout} to={'/'} className="btn  custom-button">Log Out</Link>
+                    </>
                         : <Link to={'login'} className="btn  custom-button">Login</Link>
                 }
 

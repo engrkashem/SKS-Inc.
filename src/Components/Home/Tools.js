@@ -6,7 +6,7 @@ const Tools = ({ tool: { name, price, moq, description, _id, img, quantity } }) 
     const navigate = useNavigate();
 
     return (
-        <div className="card w-96 glass">
+        <div className="card glass">
             <figure><img src={img} alt={name} /></figure>
             <div className="card-body text-slate-200">
                 <h2 className=" text-center text-3xl font-semibold text-teal-400">{name}</h2>

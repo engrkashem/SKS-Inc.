@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
+import { format } from 'date-fns';
 
 const Purchase = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm({ mode: 'onChange' });
@@ -21,7 +22,7 @@ const Purchase = () => {
 
     const { data: tool, isLoading } = useQuery(['toolById', user], () => fetch(url).then(res => res.json()));
 
-    const [buttonStatus, setButtonStatus] = useState('')
+    const [buttonStatus, setButtonStatus] = useState('');
 
     useEffect(() => {
         if (!isLoading) {
@@ -29,28 +30,54 @@ const Purchase = () => {
             defaultValues.orderQty = tool.moq;
             reset({ ...defaultValues });
         }
-    }, [isLoading, tool, reset])
+    }, [isLoading, tool, reset]);
 
     if (isLoading || loading) {
         return <Loader></Loader>
-    }
+    };
 
     const { name, price, moq, description, quantity } = tool;
 
 
     const onSubmit = data => {
         setButtonStatus('active');
-        const { orderQty } = data;
+        const { orderQty, address, email, name, phone } = data;
 
         if (parseInt(orderQty) >= parseInt(moq) && parseInt(orderQty) <= parseInt(quantity)) {
-            console.log(data);
+            const date = new Date();
+            const formatedDate = format(date, 'PP');
+            const order = {
+                clientName: name,
+                email,
+                phone,
+                address,
+                orderQty,
+                toolName: tool.name,
+                date: formatedDate
+            }
+            //put is use to avoid unwanted click or double click.
+            const url = `http://localhost:5000/order`;
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(order)
+            })
+                .then(res => res.json())
+                .then(orderRes => {
+                    if (orderRes.upsertedCount) {
+                        toast('Your Order is Placed Successfully. Please Pay to Confirm Order.');
+                    }
+                    // console.log(orderRes);
+                })
         }
         else {
             setButtonStatus('cursor-not-allowed opacity-50');
             toast.error('Your Oder Quantity must be greater than Minimum Order Quantity and less than Available Stock.');
         }
 
-    }
+    };
 
     return (
         <div className="hero min-h-screen bg-cover h-content" style={{ backgroundImage: `url(${bgPurchase})` }}>

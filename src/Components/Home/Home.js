@@ -25,7 +25,7 @@ const Home = () => {
             <Banner></Banner>
             <div className=' bg-cover h-content ' style={{ backgroundImage: `url(${bgTools})` }}>
                 <h2 className=' text-slate-100 text-center font-bold text-6xl py-10'>OUR PRODUCTS</h2>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-5' >
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:p-5' >
                     {
                         tools.map(tool => <Tools
                             key={tool._id}
