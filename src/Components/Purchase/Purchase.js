@@ -56,7 +56,8 @@ const Purchase = () => {
                 date: formatedDate
             }
             //put is use to avoid unwanted click or double click.
-            const url = `http://localhost:5000/order`;
+            // const url = `http://localhost:5000/order`;
+            const url = `https://agile-badlands-34653.herokuapp.com/order`;
             fetch(url, {
                 method: 'PUT',
                 headers: {
