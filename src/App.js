@@ -14,6 +14,7 @@ import RequireAuth from './Components/Auth/RequireAuth';
 import MyProfile from './Components/Dashboard/MyProfile/MyProfile';
 import MyOrders from './Components/Dashboard/MyOrder/MyOrders';
 import AddReview from './Components/Dashboard/AddReview/AddReview';
+import Payment from './Components/Dashboard/MyOrder/Payment';
 
 function App() {
   return (
@@ -28,7 +29,9 @@ function App() {
         <Route path='/dashboard'
           element={<RequireAuth><Dashboard /></RequireAuth>}>
           <Route index element={<MyProfile />}></Route>
-          <Route path='my-orders' element={<MyOrders />}></Route>
+          <Route path='my-orders' element={<MyOrders />}>
+            <Route path='payment/:id' element={<Payment />}></Route>
+          </Route>
           <Route path='add-review' element={<AddReview />}></Route>
         </Route>
         <Route path='/blogs' element={<Blogs />}></Route>
