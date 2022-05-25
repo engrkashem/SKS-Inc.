@@ -1,14 +1,16 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { Outlet } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loader from '../../Shared/Loader';
+import DeleteConfirmModal from './DeleteConfirmModal';
 import MyOrderTableRow from './MyOrderTableRow';
 
 export const OrderContext = createContext();
 
 const MyOrders = () => {
+    const [deleteOrder, setDeleteOrder] = useState(null);
     const [user, loading] = useAuthState(auth);
 
     //load my order/ order by email
@@ -51,11 +53,19 @@ const MyOrders = () => {
                                     key={myOrder._id}
                                     myOrder={myOrder}
                                     index={index}
+                                    setDeleteOrder={setDeleteOrder}
                                 ></MyOrderTableRow>)
                             }
                         </tbody>
                     </table>
                 </div>
+                {
+                    deleteOrder && <DeleteConfirmModal
+                        deleteOrder={deleteOrder}
+                        refetch={refetch}
+                        setDeleteOrder={setDeleteOrder}
+                    ></DeleteConfirmModal>
+                }
             </div>
         </OrderContext.Provider>
     );
