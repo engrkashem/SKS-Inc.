@@ -15,6 +15,10 @@ import MyProfile from './Components/Dashboard/MyProfile/MyProfile';
 import MyOrders from './Components/Dashboard/MyOrder/MyOrders';
 import AddReview from './Components/Dashboard/AddReview/AddReview';
 import Payment from './Components/Dashboard/MyOrder/Payment';
+import AddTool from './Components/Dashboard/AddTool/AddTool';
+import MakeAdmin from './Components/Dashboard/MakeAdmin/MakeAdmin';
+import ManageAllOrders from './Components/Dashboard/ManageAllOrders/ManageAllOrders';
+import ManageTools from './Components/Dashboard/ManageTools/ManageTools';
 
 function App() {
   return (
@@ -33,6 +37,10 @@ function App() {
             <Route path='payment/:id' element={<Payment />}></Route>
           </Route>
           <Route path='add-review' element={<AddReview />}></Route>
+          <Route path='add-tool' element={<AddTool />}></Route>
+          <Route path='make-admin' element={<MakeAdmin />}></Route>
+          <Route path='manage-all-orders' element={<ManageAllOrders />}></Route>
+          <Route path='manage-tools' element={<ManageTools />}></Route>
         </Route>
         <Route path='/blogs' element={<Blogs />}></Route>
         <Route path='/login' element={<Login />}></Route>

@@ -7,7 +7,7 @@ const Tools = ({ tool: { name, price, moq, description, _id, img, quantity } }) 
 
     return (
         <div className="card glass">
-            <figure><img src={img} alt={name} /></figure>
+            <figure><img className=' h-64 w-full' src={img} alt={name} /></figure>
             <div className="card-body text-slate-200">
                 <h2 className=" text-center text-3xl font-semibold text-teal-400">{name}</h2>
                 <p>Description: <small>{description.slice(0, 30)}...</small></p>

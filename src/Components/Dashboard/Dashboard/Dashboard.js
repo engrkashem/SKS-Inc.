@@ -11,7 +11,7 @@ const Dashboard = () => {
             <div style={{ backgroundImage: `url(${bgMyOrder})` }} className="drawer-content p-4 bg-cover h-content">
                 <h1 className=' text-4xl font-bold py-2'>Your Dashboard</h1>
                 {/* <!-- Page content here --> */}
-                <label htmlFor="dashboard-sidebar-left" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+                <label htmlFor="dashboard-sidebar-left" className="btn btn-outline btn-accent drawer-button lg:hidden">Open Side Menu</label>
                 <Outlet></Outlet>
 
             </div>
@@ -22,6 +22,10 @@ const Dashboard = () => {
                     <li><ActiveLink>My Profile, </ActiveLink></li>
                     <li className='mt-2'><ActiveLink>My Order,my-orders</ActiveLink></li>
                     <li className='mt-2'><ActiveLink>Add A Review,add-review</ActiveLink></li>
+                    <li className='mt-2'><ActiveLink>Add A Tool,add-tool</ActiveLink></li>
+                    <li className='mt-2'><ActiveLink>Make Admin,make-admin</ActiveLink></li>
+                    <li className='mt-2'><ActiveLink>Manage Tools,manage-tools</ActiveLink></li>
+                    <li className='mt-2'><ActiveLink>Manage All Orders,manage-all-orders</ActiveLink></li>
 
                 </ul>
 
