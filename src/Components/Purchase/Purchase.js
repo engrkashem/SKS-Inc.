@@ -48,7 +48,7 @@ const Purchase = () => {
             const date = new Date();
             const formatedDate = format(date, 'PP');
             const amount = parseInt(orderQty) * parseInt(price);
-            const vat = amount * 0.15;
+            const vat = (amount * 0.15);
             const total = (amount + vat).toFixed(2);
             const order = {
                 clientName: name,
@@ -59,8 +59,10 @@ const Purchase = () => {
                 toolName: tool.name,
                 date: formatedDate,
                 amount,
-                vat,
-                total
+                vat: vat.toFixed(2),
+                total,
+                productId: id,
+                stockQty: quantity
             }
 
             //put is use to avoid unwanted click or double click.

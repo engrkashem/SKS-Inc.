@@ -8,7 +8,7 @@ import Loader from '../Shared/Loader';
 import bgTools from '../../images/bg-tools.jpg';
 
 const Home = () => {
-    //Loading Tools from server (most 6 tools only)
+    //Loading Tools from server 
     const { data: tools, isLoading } = useQuery('sixTools', () => {
         // const url = `http://localhost:5000/tools`;
         const url = `https://agile-badlands-34653.herokuapp.com/tools`;

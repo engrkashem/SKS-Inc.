@@ -11,7 +11,7 @@ const CheckoutForm = ({ myOrder, refetch }) => {
     const [txId, setTxId] = useState('');
 
     const price = myOrder.total;
-    const { clientName, email } = myOrder;
+    const { _id, clientName, email } = myOrder;
 
     useEffect(() => {
         // const url = `http://localhost:5000/create-payment-intent`;
@@ -81,6 +81,26 @@ const CheckoutForm = ({ myOrder, refetch }) => {
             setTxId(paymentIntent?.id);
             setSuccess('YeY!!, Yor Payment is Successful. Your Order is now Confirmed');
 
+            //update database by payment status to the order
+            if (paymentIntent?.id) {
+                const payment = {
+                    txId: paymentIntent?.id,
+                    client: email
+                }
+                // const url = `http://localhost:5000/order/${_id}`;
+                const url = `https://agile-badlands-34653.herokuapp.com/order/${_id}`;
+                fetch(url, {
+                    method: 'PATCH',
+                    headers: {
+                        'content-type': 'application/json',
+                        'authorization': `Bearer ${localStorage.getItem('secretToken')}`
+                    },
+                    body: JSON.stringify({ payment, myOrder })
+                }).then(res => res.json()).then(upRes => {
+                    refetch();
+                    // console.log(upRes);
+                })
+            }
         }
     };
 
