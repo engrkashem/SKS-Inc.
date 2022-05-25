@@ -17,7 +17,7 @@ const MyProfile = () => {
     //load user Profile information
     // const url = `http://localhost:5000/user/${user.email}`;
     const url = `https://agile-badlands-34653.herokuapp.com/user/${user.email}`;
-    const { data: userInfo, isLoading, refetch } = useQuery(['user', user?.email], () => fetch(url, {
+    const { data: userInfo, isLoading, refetch } = useQuery(['user', user.email], () => fetch(url, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('secretToken')}`

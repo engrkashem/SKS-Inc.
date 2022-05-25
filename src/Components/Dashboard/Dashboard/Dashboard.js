@@ -2,8 +2,18 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import ActiveLink from '../../Shared/ActiveLink';
 import bgMyOrder from '../../../images/bg-myOrder.jpg';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
+import Loader from '../../Shared/Loader';
+import useAdmin from '../../../hooks/useAdmin';
 
 const Dashboard = () => {
+    const [user, loading] = useAuthState(auth);
+    const [admin, adminLoading] = useAdmin(user);
+
+    if (loading || adminLoading) {
+        return <Loader></Loader>
+    }
 
     return (
         <div className="drawer drawer-mobile">
@@ -20,13 +30,19 @@ const Dashboard = () => {
                 <ul className="menu p-4 overflow-y-auto w-60 bg-slate-800 text-slate-100">
                     {/* <!-- Sidebar content here --> */}
                     <li><ActiveLink>My Profile, </ActiveLink></li>
-                    <li className='mt-2'><ActiveLink>My Order,my-orders</ActiveLink></li>
-                    <li className='mt-2'><ActiveLink>Add A Review,add-review</ActiveLink></li>
-                    <li className='mt-2'><ActiveLink>Add A Tool,add-tool</ActiveLink></li>
-                    <li className='mt-2'><ActiveLink>Make Admin,make-admin</ActiveLink></li>
-                    <li className='mt-2'><ActiveLink>Manage Tools,manage-tools</ActiveLink></li>
-                    <li className='mt-2'><ActiveLink>Manage All Orders,manage-all-orders</ActiveLink></li>
-
+                    {
+                        admin ?
+                            <>
+                                <li className='mt-2'><ActiveLink>Add A Tool,add-tool</ActiveLink></li>
+                                <li className='mt-2'><ActiveLink>Make Admin,make-admin</ActiveLink></li>
+                                <li className='mt-2'><ActiveLink>Manage Tools,manage-tools</ActiveLink></li>
+                                <li className='mt-2'><ActiveLink>Manage All Orders,manage-all-orders</ActiveLink></li>
+                            </> :
+                            <>
+                                <li className='mt-2'><ActiveLink>My Order,my-orders</ActiveLink></li>
+                                <li className='mt-2'><ActiveLink>Add A Review,add-review</ActiveLink></li>
+                            </>
+                    }
                 </ul>
 
             </div>
