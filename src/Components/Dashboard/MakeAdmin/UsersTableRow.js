@@ -4,9 +4,10 @@ import { toast } from 'react-toastify';
 const UsersTableRow = ({ user, index, refetch }) => {
     const { email, role } = user;
 
+    // const url = `http://localhost:5000/user/admin/${email}`;
+    const url = `https://agile-badlands-34653.herokuapp.com/user/admin/${email}`;
+
     const makeAdmin = () => {
-        // const url = `http://localhost:5000/user/admin/${email}`;
-        const url = `https://agile-badlands-34653.herokuapp.com/user/admin/${email}`;
         fetch(url, {
             method: 'PATCH',
             headers: {
@@ -26,6 +27,26 @@ const UsersTableRow = ({ user, index, refetch }) => {
         })
     }
 
+    const removeAdmin = () => {
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('secretToken')}`
+            }
+        }).then(res => {
+            if (res.status === 403) {
+                toast.error('Sorry, You are not authorised to remove an admin');
+            }
+            return res.json()
+        }).then(removeData => {
+            if (removeData.modifiedCount > 0) {
+                refetch();
+                toast.success(` ${email} has been removed from Admin Successfully`);
+            }
+        })
+    }
+
     return (
         <tr>
             <th>{index + 1}</th>
@@ -34,7 +55,7 @@ const UsersTableRow = ({ user, index, refetch }) => {
             <td>
                 {
                     (role === 'admin') ?
-                        <button className="btn btn-xs btn-error">Remove Admin</button> :
+                        <button onClick={removeAdmin} className="btn btn-xs btn-error">Remove Admin</button> :
                         <button onClick={makeAdmin} className="btn btn-xs btn-accent">Make Admin</button>
                 }
             </td>
