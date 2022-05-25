@@ -19,6 +19,7 @@ import AddTool from './Components/Dashboard/AddTool/AddTool';
 import MakeAdmin from './Components/Dashboard/MakeAdmin/MakeAdmin';
 import ManageAllOrders from './Components/Dashboard/ManageAllOrders/ManageAllOrders';
 import ManageTools from './Components/Dashboard/ManageTools/ManageTools';
+import RequireAdmin from './Components/Auth/RequireAdmin';
 
 function App() {
   return (
@@ -37,10 +38,10 @@ function App() {
             <Route path='payment/:id' element={<Payment />}></Route>
           </Route>
           <Route path='add-review' element={<AddReview />}></Route>
-          <Route path='add-tool' element={<AddTool />}></Route>
-          <Route path='make-admin' element={<MakeAdmin />}></Route>
-          <Route path='manage-all-orders' element={<ManageAllOrders />}></Route>
-          <Route path='manage-tools' element={<ManageTools />}></Route>
+          <Route path='add-tool' element={<RequireAdmin><AddTool /></RequireAdmin>}></Route>
+          <Route path='make-admin' element={<RequireAdmin><MakeAdmin /></RequireAdmin>}></Route>
+          <Route path='manage-all-orders' element={<RequireAdmin><ManageAllOrders /></RequireAdmin>}></Route>
+          <Route path='manage-tools' element={<RequireAdmin><ManageTools /></RequireAdmin>}></Route>
         </Route>
         <Route path='/blogs' element={<Blogs />}></Route>
         <Route path='/login' element={<Login />}></Route>
