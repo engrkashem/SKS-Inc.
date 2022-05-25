@@ -8,7 +8,7 @@ const Dashboard = () => {
     return (
         <div className="drawer drawer-mobile">
             <input id="dashboard-sidebar-left" type="checkbox" className="drawer-toggle" />
-            <div style={{ backgroundImage: `url(${bgMyOrder})` }} className="drawer-content p-4 bg-cover">
+            <div style={{ backgroundImage: `url(${bgMyOrder})` }} className="drawer-content p-4 bg-cover h-content">
                 <h1 className=' text-4xl font-bold py-2'>Your Dashboard</h1>
                 {/* <!-- Page content here --> */}
                 <label htmlFor="dashboard-sidebar-left" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>

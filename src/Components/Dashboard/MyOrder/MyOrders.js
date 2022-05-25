@@ -25,7 +25,7 @@ const MyOrders = () => {
         return <Loader></Loader>
     }
 
-    console.log(myOrders)
+    // console.log(myOrders)
 
     return (
         <OrderContext.Provider value={myOrders}>
