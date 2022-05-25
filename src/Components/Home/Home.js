@@ -8,6 +8,8 @@ import Loader from '../Shared/Loader';
 import bgTools from '../../images/bg-tools.jpg';
 import BusinessSummery from './BusinessSummery';
 import bgStat from '../../images/bgStat.jpg';
+import Reviews from './Reviews';
+import bgReview from '../../images/bgReview.jpg';
 
 const Home = () => {
     //Loading Tools from server 
@@ -40,6 +42,10 @@ const Home = () => {
                 <h1 className=' text-5xl font-bold mb-2'>Appreciated Globally</h1>
                 <p className=' text-2xl font-medium mb-10'>Provide Reliability to Clients</p>
                 <BusinessSummery></BusinessSummery>
+            </div>
+            <div className=' bg-cover py-10' style={{ backgroundImage: `url(${bgReview})` }}>
+                <h1 className=' uppercase text-6xl font-bold text-center my-5'>Testimony</h1>
+                <Reviews></Reviews>
             </div>
             <Footer></Footer>
         </div>
