@@ -14,7 +14,7 @@ const MyOrders = () => {
     //load my order/ order by email
     // const url = `http://localhost:5000/my-order/${user.email}`;
     const url = `https://agile-badlands-34653.herokuapp.com/my-order/${user.email}`;
-    const { data: myOrders, isLoading } = useQuery('myOrder', () => fetch(url, {
+    const { data: myOrders, isLoading, refetch } = useQuery('myOrder', () => fetch(url, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('secretToken')}`
@@ -28,7 +28,7 @@ const MyOrders = () => {
     // console.log(myOrders)
 
     return (
-        <OrderContext.Provider value={myOrders}>
+        <OrderContext.Provider value={{ myOrders, refetch }}>
             <div>
                 <h2 className=' text-2xl font-semibold'>My Orders: {myOrders.length}</h2>
                 <Outlet></Outlet>

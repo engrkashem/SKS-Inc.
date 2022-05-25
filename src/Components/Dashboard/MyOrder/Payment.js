@@ -8,7 +8,8 @@ import { OrderContext } from './MyOrders';
 const stripePromise = loadStripe('pk_test_51L1o5DIiUKs0u5qlbv5UhAGcsaMKtzoogSnWRrcHf1xcvrrwWgGb8Fp5Vfr28hkGF3huBN6znChJLPE6r0cz4lye00lodgPHIu');
 
 const Payment = () => {
-    const myOrders = useContext(OrderContext);
+    const contextedInfo = useContext(OrderContext);
+    const { myOrders, refetch } = contextedInfo;
     const { id } = useParams();
     const currentOrder = myOrders.filter(order => order._id === id);
     const myOrder = currentOrder[0];
@@ -22,7 +23,10 @@ const Payment = () => {
             </div>
             <div className="card-body">
                 <Elements stripe={stripePromise}>
-                    <CheckoutForm myOrder={myOrder} />
+                    <CheckoutForm
+                        myOrder={myOrder}
+                        refetch={refetch}
+                    />
                 </Elements>
             </div>
         </div>

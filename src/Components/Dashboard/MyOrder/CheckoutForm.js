@@ -1,7 +1,7 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 
-const CheckoutForm = ({ myOrder }) => {
+const CheckoutForm = ({ myOrder, refetch }) => {
     const stripe = useStripe();
     const elements = useElements();
 
@@ -79,8 +79,8 @@ const CheckoutForm = ({ myOrder }) => {
         else {
             setCardError('');
             setTxId(paymentIntent?.id);
-            console.log(txId)
             setSuccess('YeY!!, Yor Payment is Successful. Your Order is now Confirmed');
+
         }
     };
 
