@@ -6,6 +6,8 @@ import Tools from './Tools';
 import { useQuery } from 'react-query';
 import Loader from '../Shared/Loader';
 import bgTools from '../../images/bg-tools.jpg';
+import BusinessSummery from './BusinessSummery';
+import bgStat from '../../images/bgStat.jpg';
 
 const Home = () => {
     //Loading Tools from server 
@@ -33,6 +35,11 @@ const Home = () => {
                         ></Tools>)
                     }
                 </div>
+            </div>
+            <div className='flex flex-col items-center justify-center bg-cover py-20' style={{ backgroundImage: `url(${bgStat})` }}>
+                <h1 className=' text-5xl font-bold mb-2'>Appreciated Globally</h1>
+                <p className=' text-2xl font-medium mb-10'>Provide Reliability to Clients</p>
+                <BusinessSummery></BusinessSummery>
             </div>
             <Footer></Footer>
         </div>
