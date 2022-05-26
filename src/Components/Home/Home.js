@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Footer from '../Shared/Footer';
 import '../../styles/CustomButton.css';
 import Banner from './Banner';
 import Tools from './Tools';
-import { useQuery } from 'react-query';
-import Loader from '../Shared/Loader';
 import bgTools from '../../images/bg-tools.jpg';
 import BusinessSummery from './BusinessSummery';
 import bgStat from '../../images/bgStat.jpg';
@@ -12,19 +10,14 @@ import Reviews from './Reviews';
 import bgReview from '../../images/bgReview.jpg';
 import Carousel from './Carousel';
 import StartJourney from './StartJourney';
+import { ToolsContext } from '../../App';
 
 const Home = () => {
-    //Loading Tools from server 
-    const { data: tools, isLoading } = useQuery('sixTools', () => {
-        // const url = `http://localhost:5000/tools`;
-        const url = `https://agile-badlands-34653.herokuapp.com/tools`;
-        return fetch(url)
-            .then(res => res.json())
-    });
+    //Loading Tools from server via context API
 
-    if (isLoading) {
-        return <Loader></Loader>
-    }
+    const sharedByToolsContext = useContext(ToolsContext);
+    const { tools } = sharedByToolsContext
+    // console.log(tools)
 
     return (
         <div>

@@ -21,37 +21,57 @@ import ManageAllOrders from './Components/Dashboard/ManageAllOrders/ManageAllOrd
 import ManageTools from './Components/Dashboard/ManageTools/ManageTools';
 import RequireAdmin from './Components/Auth/RequireAdmin';
 import MyPortfolio from './Components/MyPortfolio/MyPortfolio';
+import { useQuery } from 'react-query';
+import Loader from './Components/Shared/Loader';
+import { createContext } from 'react';
+
+export const ToolsContext = createContext()
 
 function App() {
+
+  //Loading Tools from server 
+  const { data: tools, isLoading, refetch } = useQuery('sixTools', () => {
+    // const url = `http://localhost:5000/tools`;
+    const url = `https://agile-badlands-34653.herokuapp.com/tools`;
+    return fetch(url)
+      .then(res => res.json())
+  });
+
+  if (isLoading) {
+    return <Loader></Loader>
+  }
+
   return (
-    <div className=" max-w-7xl mx-auto">
-      <Navbar></Navbar>
-      <Routes>
-        <Route path='/' element={<Home />}></Route>
-        <Route path='/home' element={<Home />}></Route>
-        <Route path='/purchase/:id'
-          element={<RequireAuth><Purchase /></RequireAuth>}>
-        </Route>
-        <Route path='/dashboard'
-          element={<RequireAuth><Dashboard /></RequireAuth>}>
-          <Route index element={<MyProfile />}></Route>
-          <Route path='my-orders' element={<MyOrders />}>
-            <Route path='payment/:id' element={<Payment />}></Route>
+    <ToolsContext.Provider value={{ tools, refetch }}>
+      <div className=" max-w-7xl mx-auto">
+        <Navbar></Navbar>
+        <Routes>
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/home' element={<Home />}></Route>
+          <Route path='/purchase/:id'
+            element={<RequireAuth><Purchase /></RequireAuth>}>
           </Route>
-          <Route path='add-review' element={<AddReview />}></Route>
-          <Route path='add-tool' element={<RequireAdmin><AddTool /></RequireAdmin>}></Route>
-          <Route path='make-admin' element={<RequireAdmin><MakeAdmin /></RequireAdmin>}></Route>
-          <Route path='manage-all-orders' element={<RequireAdmin><ManageAllOrders /></RequireAdmin>}></Route>
-          <Route path='manage-tools' element={<RequireAdmin><ManageTools /></RequireAdmin>}></Route>
-        </Route>
-        <Route path='/blogs' element={<Blogs />}></Route>
-        <Route path='/portfolio' element={<MyPortfolio />}></Route>
-        <Route path='/login' element={<Login />}></Route>
-        <Route path='/register' element={<Register />}></Route>
-        <Route path='*' element={<NotFound />}></Route>
-      </Routes>
-      <ToastContainer />
-    </div>
+          <Route path='/dashboard'
+            element={<RequireAuth><Dashboard /></RequireAuth>}>
+            <Route index element={<MyProfile />}></Route>
+            <Route path='my-orders' element={<MyOrders />}>
+              <Route path='payment/:id' element={<Payment />}></Route>
+            </Route>
+            <Route path='add-review' element={<AddReview />}></Route>
+            <Route path='add-tool' element={<RequireAdmin><AddTool /></RequireAdmin>}></Route>
+            <Route path='make-admin' element={<RequireAdmin><MakeAdmin /></RequireAdmin>}></Route>
+            <Route path='manage-all-orders' element={<RequireAdmin><ManageAllOrders /></RequireAdmin>}></Route>
+            <Route path='manage-tools' element={<RequireAdmin><ManageTools /></RequireAdmin>}></Route>
+          </Route>
+          <Route path='/blogs' element={<Blogs />}></Route>
+          <Route path='/portfolio' element={<MyPortfolio />}></Route>
+          <Route path='/login' element={<Login />}></Route>
+          <Route path='/register' element={<Register />}></Route>
+          <Route path='*' element={<NotFound />}></Route>
+        </Routes>
+        <ToastContainer />
+      </div>
+    </ToolsContext.Provider>
   );
 }
 
