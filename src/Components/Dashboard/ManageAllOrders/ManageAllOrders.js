@@ -21,6 +21,7 @@ const ManageAllOrders = () => {
         return <Loader></Loader>
     }
 
+    // console.log(orders)
 
     return (
         <div>

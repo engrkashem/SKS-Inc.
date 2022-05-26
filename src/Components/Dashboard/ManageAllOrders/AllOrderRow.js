@@ -2,13 +2,12 @@ import React from 'react';
 import { toast } from 'react-toastify';
 
 const AllOrderRow = ({ order, index, refetch, setDeleteOrder }) => {
-    const { toolName, email, orderQty, paid, phone, shipped } = order;
-
-
+    const { _id, toolName, email, orderQty, paid, phone, shipped } = order;
+    // console.log(toolName, email, orderQty, paid, phone, shipped)
 
     const handleShipped = () => {
-        // const url = `http://localhost:5000/order/${email}`;
-        const url = `https://agile-badlands-34653.herokuapp.com/order/${email}`;
+        // const url = `http://localhost:5000/order/${_id}`;
+        const url = `https://agile-badlands-34653.herokuapp.com/order/${_id}`;
         fetch(url, {
             method: 'PUT',
             headers: {
