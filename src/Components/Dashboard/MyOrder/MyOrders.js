@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { Outlet } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loader from '../../Shared/Loader';
-import DeleteConfirmModal from './DeleteConfirmModal';
+import DeleteConfirmModal from '../../Shared/DeleteConfirmModal';
 import MyOrderTableRow from './MyOrderTableRow';
 
 export const OrderContext = createContext();

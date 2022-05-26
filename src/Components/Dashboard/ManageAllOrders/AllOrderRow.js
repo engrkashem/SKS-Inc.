@@ -1,11 +1,14 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-const AllOrderRow = ({ order, index, refetch }) => {
-    const { _id, toolName, email, orderQty, paid, phone, shipped } = order;
+const AllOrderRow = ({ order, index, refetch, setDeleteOrder }) => {
+    const { toolName, email, orderQty, paid, phone, shipped } = order;
+
+
 
     const handleShipped = () => {
-        const url = `http://localhost:5000/order/${email}`;
+        // const url = `http://localhost:5000/order/${email}`;
+        const url = `https://agile-badlands-34653.herokuapp.com/order/${email}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -24,10 +27,6 @@ const AllOrderRow = ({ order, index, refetch }) => {
         })
     };
 
-    const handleCancel = () => {
-        const url = `http://localhost:5000/order/${_id}`
-
-    }
 
     return (
         <tr>
@@ -50,7 +49,7 @@ const AllOrderRow = ({ order, index, refetch }) => {
                         </> :
                         <>
                             <p className=' text-error font-semibold'>Unpaid</p>
-                            <label onClick={handleCancel} htmlFor="delete-confirm-modal" className="btn btn-xs btn-error ">Cancel</label>
+                            <label onClick={() => setDeleteOrder(order)} htmlFor="delete-confirm-modal" className="btn btn-xs btn-error ">Cancel</label>
                         </>
 
                 }
