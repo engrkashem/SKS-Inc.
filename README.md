@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# SKS Inc. (A Tools Manufacturing Company)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Live Site:  [SKS Inc.](https://sks-inc.web.app/)
+### Live Site Link:  https://sks-inc.web.app/
 
-## Available Scripts
+## Features:
+<ul>
+<li>Login Process verified by Firebase</li>
+<li>JWT Token is attached to protect private route and urls</li>
+<li>Admin Dashboard added. Admin verification is applied to both server and client side</li>
+<li>RequireAdmin custom hooks is created to protect urls.</li>
+<li>VerifyAdmin middle tire added to server side to secure APIs</li>
+<li>Card Payment (international) is applied (stripe). </li>
+<li>Custom Animation Button is used </li>
+<li>Whole site is responsive for PC and Mobile.</li>
+<li>Conditional rendering is applied.</li>
+<li>Context API is used.</li>
+</ul>
 
-In the project directory, you can run:
+## Functionality:
+<ul>
+<li>Place redirect to My Order page where Payment option available to accomplesh payment.</li>
+<li>With payment stock quantity reduced and order database updated. </li>
+<li>An Admin can make a user admin also can remove a user from admin panel.</li>
+<li>Dashboard is protected require login to access it.</li>
+<li>User can provide review in their dashboard</li>
+<li>User can update their profile in their dashboard</li>
+<li>Email varification is added when a user is registered by email & password. </li>
+<li>If a route is not exists then 404 page is showed</li>
+<li> Login and Log out page and can be toggled between them.</li>
+<li> Password rest link added</li>
 
-### `npm start`
+</ul>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Technologies/Framework Used:
+<ul>
+<li>React Query</li>
+<li>For Authentication: Firebase</li>
+<li>stripeJs for Card payment</li>
+<li>daisyUI for component library</li>
+<li>Tailwind CSS as library</li>
+<li>React Form Hook</li>
+<li>React Firebase Hook</li>
+<li>React Router</li>
+<li>React Toastify</li>
+<li>To formate date date-fns is used.</li>
+</ul>
