@@ -10,6 +10,7 @@ import BusinessSummery from './BusinessSummery';
 import bgStat from '../../images/bgStat.jpg';
 import Reviews from './Reviews';
 import bgReview from '../../images/bgReview.jpg';
+import Carousel from './Carousel';
 
 const Home = () => {
     //Loading Tools from server 
@@ -27,6 +28,7 @@ const Home = () => {
     return (
         <div>
             <Banner></Banner>
+            <Carousel></Carousel>
             <div className=' bg-cover h-content ' style={{ backgroundImage: `url(${bgTools})` }}>
                 <h2 className=' text-slate-100 text-center font-bold text-6xl py-10'>OUR PRODUCTS</h2>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:p-5' >
