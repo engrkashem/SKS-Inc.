@@ -84,8 +84,17 @@ const MyProfile = () => {
         <div className="hero min-h-screen bg-transparent">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left w-full">
-                    <div className=' w-36 h-36 rounded-full border border-blue-400'>
-                        <img className=' w-full h-full rounded-full' src={img} alt="" />
+                    <div className=' w-36 h-36 rounded-full border border-blue-400 flex flex-col justify-center items-center'>
+                        {
+                            img ?
+                                <img className=' w-full h-full rounded-full' src={img} alt="" />
+                                : <>
+                                    <p className=' text-center'>Image </p>
+                                    <p className=' text-center'>Update</p>
+                                    <p className=' text-center'>Your Profile</p>
+                                </>
+                        }
+
                     </div>
                     <h1 className="text-3xl font-bold">User Profile</h1>
                     <p className="py-2 font-medium">Name: <span>{displayName}</span></p>
