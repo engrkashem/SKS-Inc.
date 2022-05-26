@@ -20,6 +20,7 @@ import MakeAdmin from './Components/Dashboard/MakeAdmin/MakeAdmin';
 import ManageAllOrders from './Components/Dashboard/ManageAllOrders/ManageAllOrders';
 import ManageTools from './Components/Dashboard/ManageTools/ManageTools';
 import RequireAdmin from './Components/Auth/RequireAdmin';
+import MyPortfolio from './Components/MyPortfolio/MyPortfolio';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path='manage-tools' element={<RequireAdmin><ManageTools /></RequireAdmin>}></Route>
         </Route>
         <Route path='/blogs' element={<Blogs />}></Route>
+        <Route path='/portfolio' element={<MyPortfolio />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='*' element={<NotFound />}></Route>

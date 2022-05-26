@@ -20,6 +20,7 @@ const Navbar = () => {
                 : ''
         }
         <li><CustomActiveLink>blogs</CustomActiveLink></li>
+        <li><CustomActiveLink>portfolio</CustomActiveLink></li>
     </>
 
     const logout = () => {
