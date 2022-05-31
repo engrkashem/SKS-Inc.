@@ -3,6 +3,12 @@
 ## Live Site:  [SKS Inc.](https://sks-inc.web.app/)
 ### Live Site Link:  https://sks-inc.web.app/
 
+### Admin Credintials: 
+<ul>
+<li>Email: strawberry@fruit.com</li>
+  <li>Password: Str@wberry1</li>
+</ul>
+
 ## Features:
 <ul>
 <li>Login Process verified by Firebase</li>
