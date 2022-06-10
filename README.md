@@ -13,6 +13,7 @@
 <ul>
 <li>Login Process verified by Firebase</li>
 <li>JWT Token is attached to protect private route and urls</li>
+  <li>401 status for JWT Token invalid and 403 status for expired JWT Token asserted.</li>
 <li>Admin Dashboard added. Admin verification is applied to both server and client side</li>
 <li>RequireAdmin custom hooks is created to protect urls.</li>
 <li>VerifyAdmin middle tire added to server side to secure APIs</li>
