@@ -25,7 +25,7 @@
 
 ## Functionality:
 <ul>
-<li>Place redirect to My Order page where Payment option available to accomplesh payment.</li>
+<li>After order placement redirect to My Order page where Payment option available to accomplesh payment.</li>
 <li>With payment stock quantity reduced and order database updated. </li>
 <li>An Admin can make a user admin also can remove a user from admin panel.</li>
 <li>Dashboard is protected require login to access it.</li>
