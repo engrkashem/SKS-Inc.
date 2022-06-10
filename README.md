@@ -34,7 +34,7 @@
 <li>Email varification is added when a user is registered by email & password. </li>
 <li>If a route is not exists then 404 page is showed</li>
 <li> Login and Log out page and can be toggled between them.</li>
-<li> Password rest link added</li>
+<li> Password reset link added</li>
 
 </ul>
 
