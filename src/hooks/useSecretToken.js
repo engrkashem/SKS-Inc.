@@ -8,7 +8,8 @@ const useSecretToken = user => {
         const email = user?.user?.email;
         const presentUser = { email: email };
         // const url = `http://localhost:5000/user/${email}`;
-        const url = `https://agile-badlands-34653.herokuapp.com/user/${email}`;
+        // const url = `https://agile-badlands-34653.herokuapp.com/user/${email}`;
+        const url = `https://sks-inc-server.vercel.app/user/${email}`;
         if (email) {
             fetch(url, {
                 method: 'PUT',

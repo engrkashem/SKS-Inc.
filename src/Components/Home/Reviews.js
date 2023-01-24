@@ -8,7 +8,8 @@ const Reviews = () => {
     //load reviews from database
     const { data: reviews, isLoading } = useQuery('allReviews', () => {
         // const url = `http://localhost:5000/review`;
-        const url = `https://agile-badlands-34653.herokuapp.com/review`;
+        // const url = `https://agile-badlands-34653.herokuapp.com/review`;
+        const url = `https://sks-inc-server.vercel.app/review`;
 
         return fetch(url)
             .then(res => res.json())

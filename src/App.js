@@ -32,7 +32,8 @@ function App() {
   //Loading Tools from server 
   const { data: tools, isLoading, refetch } = useQuery('sixTools', () => {
     // const url = `http://localhost:5000/tools`;
-    const url = `https://agile-badlands-34653.herokuapp.com/tools`;
+    // const url = `https://agile-badlands-34653.herokuapp.com/tools`;
+    const url = `https://sks-inc-server.vercel.app/tools`;
     return fetch(url)
       .then(res => res.json())
   });

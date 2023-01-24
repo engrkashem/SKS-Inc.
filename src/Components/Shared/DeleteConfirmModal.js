@@ -5,7 +5,8 @@ const DeleteConfirmModal = ({ deleteOrder: { _id, toolName
 
     const handleDeleteOrder = () => {
         // const url = `http://localhost:5000/order/${_id}`;
-        const url = `https://agile-badlands-34653.herokuapp.com/order/${_id}`;
+        // const url = `https://agile-badlands-34653.herokuapp.com/order/${_id}`;
+        const url = `https://sks-inc-server.vercel.app/order/${_id}`;
         fetch(url, {
             method: 'DELETE',
             headers: {

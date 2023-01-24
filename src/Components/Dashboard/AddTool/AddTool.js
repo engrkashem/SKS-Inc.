@@ -42,7 +42,8 @@ const AddTool = () => {
                         img
                     };
                     // const url = `http://localhost:5000/tool`;
-                    const url = `https://agile-badlands-34653.herokuapp.com/tool`;
+                    // const url = `https://agile-badlands-34653.herokuapp.com/tool`;
+                    const url = `https://sks-inc-server.vercel.app/tool`;
                     fetch(url, {
                         method: 'POST',
                         headers: {

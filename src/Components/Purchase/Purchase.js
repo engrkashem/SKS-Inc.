@@ -18,7 +18,8 @@ const Purchase = () => {
 
     const { id } = useParams();
     // const url = `http://localhost:5000/tool/${id}`
-    const url = `https://agile-badlands-34653.herokuapp.com/tool/${id}`
+    // const url = `https://agile-badlands-34653.herokuapp.com/tool/${id}`
+    const url = `https://sks-inc-server.vercel.app/tool/${id}`
 
     const { data: tool, isLoading } = useQuery(['toolById', user], () => fetch(url).then(res => res.json()));
 
@@ -67,7 +68,8 @@ const Purchase = () => {
 
             //put is use to avoid unwanted click or double click.
             // const url = `http://localhost:5000/order`;
-            const url = `https://agile-badlands-34653.herokuapp.com/order`;
+            // const url = `https://agile-badlands-34653.herokuapp.com/order`;
+            const url = `https://sks-inc-server.vercel.app/order`;
             fetch(url, {
                 method: 'PUT',
                 headers: {

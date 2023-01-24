@@ -6,7 +6,8 @@ import UsersTableRow from './UsersTableRow';
 const MakeAdmin = () => {
     //loading all user first to make a user admin
     // const url = `http://localhost:5000/user`;
-    const url = `https://agile-badlands-34653.herokuapp.com/user`;
+    // const url = `https://agile-badlands-34653.herokuapp.com/user`;
+    const url = `https://sks-inc-server.vercel.app/user`;
 
     const { data: users, isLoading, refetch } = useQuery('allUsers', () => fetch(url, {
         method: 'GET',

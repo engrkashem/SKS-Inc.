@@ -22,7 +22,8 @@ const AddReview = () => {
             reviewer: user.email
         };
         // const url = `http://localhost:5000/review`;
-        const url = `https://agile-badlands-34653.herokuapp.com/review`;
+        // const url = `https://agile-badlands-34653.herokuapp.com/review`;
+        const url = `https://sks-inc-server.vercel.app/review`;
         fetch(url, {
             method: 'POST',
             headers: {

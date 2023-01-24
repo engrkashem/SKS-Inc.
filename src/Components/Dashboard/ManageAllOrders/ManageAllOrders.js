@@ -9,7 +9,8 @@ const ManageAllOrders = () => {
     // console.log(deleteOrder)
 
     // const url = `http://localhost:5000/order`;
-    const url = `https://agile-badlands-34653.herokuapp.com/order`;
+    // const url = `https://agile-badlands-34653.herokuapp.com/order`;
+    const url = `https://sks-inc-server.vercel.app/order`;
     const { data: orders, isLoading, refetch } = useQuery('allOrders', () => fetch(url, {
         method: 'GET',
         headers: {
