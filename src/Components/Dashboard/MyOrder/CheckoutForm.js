@@ -16,7 +16,8 @@ const CheckoutForm = ({ myOrder, refetch }) => {
     useEffect(() => {
         // const url = `http://localhost:5000/create-payment-intent`;
         // const url = `https://agile-badlands-34653.herokuapp.com/create-payment-intent`;
-        const url = `https://sks-inc-server.vercel.app/create-payment-intent`;
+        // const url = `https://sks-inc-server.vercel.app/create-payment-intent`;
+        const url = `https://sks-server.onrender.com/create-payment-intent`;
         fetch(url, {
             method: 'POST',
             headers: {
@@ -90,7 +91,8 @@ const CheckoutForm = ({ myOrder, refetch }) => {
                 }
                 // const url = `http://localhost:5000/order/${_id}`;
                 // const url = `https://agile-badlands-34653.herokuapp.com/order/${_id}`;
-                const url = `https://sks-inc-server.vercel.app/order/${_id}`;
+                // const url = `https://sks-inc-server.vercel.app/order/${_id}`;
+                const url = `https://sks-server.onrender.com/order/${_id}`;
                 fetch(url, {
                     method: 'PATCH',
                     headers: {

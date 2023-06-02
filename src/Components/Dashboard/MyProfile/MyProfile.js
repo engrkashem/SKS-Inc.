@@ -17,7 +17,8 @@ const MyProfile = () => {
     //load user Profile information
     // const url = `http://localhost:5000/user/${user.email}`;
     // const url = `https://agile-badlands-34653.herokuapp.com/user/${user.email}`;
-    const url = `https://sks-inc-server.vercel.app/user/${user.email}`;
+    // const url = `https://sks-inc-server.vercel.app/user/${user.email}`;
+    const url = `https://sks-server.onrender.com/user/${user.email}`;
     const { data: userInfo, isLoading, refetch } = useQuery(['user', user.email], () => fetch(url, {
         method: 'GET',
         headers: {
@@ -59,7 +60,8 @@ const MyProfile = () => {
                         img
                     };
                     // const url = `https://agile-badlands-34653.herokuapp.com/user/${email}`;
-                    const url = `https://sks-inc-server.vercel.app/user/${email}`;
+                    // const url = `https://sks-inc-server.vercel.app/user/${email}`;
+                    const url = `https://sks-server.onrender.com/user/${email}`;
                     fetch(url, {
                         method: 'PATCH',
                         headers: {

@@ -8,7 +8,8 @@ const useAdmin = user => {
         const email = user?.email;
         // const url = `http://localhost:5000/admin/${email}`;
         // const url = `https://agile-badlands-34653.herokuapp.com/admin/${email}`;
-        const url = `https://sks-inc-server.vercel.app/admin/${email}`;
+        // const url = `https://sks-inc-server.vercel.app/admin/${email}`;
+        const url = `https://sks-server.onrender.com/admin/${email}`;
 
         if (email) {
             fetch(url, {

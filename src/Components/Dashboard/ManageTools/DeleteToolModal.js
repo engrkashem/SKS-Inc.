@@ -4,7 +4,8 @@ const DeleteToolModal = ({ deleteTool: { _id, name, quantity }, refetch, setDele
     const handleDeleteTool = () => {
         // const url = `http://localhost:5000/tool/${_id}`;
         // const url = `https://agile-badlands-34653.herokuapp.com/tool/${_id}`;
-        const url = `https://sks-inc-server.vercel.app/tool/${_id}`;
+        // const url = `https://sks-inc-server.vercel.app/tool/${_id}`;
+        const url = `https://sks-server.onrender.com/tool/${_id}`;
         fetch(url, {
             method: 'DELETE',
             headers: {

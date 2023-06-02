@@ -6,7 +6,8 @@ const UsersTableRow = ({ user, index, refetch }) => {
 
     // const url = `http://localhost:5000/user/admin/${email}`;
     // const url = `https://agile-badlands-34653.herokuapp.com/user/admin/${email}`;
-    const url = `https://sks-inc-server.vercel.app/user/admin/${email}`;
+    // const url = `https://sks-inc-server.vercel.app/user/admin/${email}`;
+    const url = `https://sks-server.onrender.com/user/admin/${email}`;
 
     const makeAdmin = () => {
         fetch(url, {

@@ -16,7 +16,8 @@ const MyOrders = () => {
     //load my order/ order by email
     // const url = `http://localhost:5000/my-order/${user.email}`;
     // const url = `https://agile-badlands-34653.herokuapp.com/my-order/${user.email}`;
-    const url = `https://sks-inc-server.vercel.app/my-order/${user.email}`;
+    // const url = `https://sks-inc-server.vercel.app/my-order/${user.email}`;
+    const url = `https://sks-server.onrender.com/my-order/${user.email}`;
     const { data: myOrders, isLoading, refetch } = useQuery('myOrder', () => fetch(url, {
         method: 'GET',
         headers: {
