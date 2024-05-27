@@ -1,54 +1,30 @@
-# SKS Inc. (A Tools Manufacturing Company)
+# React + TypeScript + Vite
 
-## Live Site:  [SKS Inc.](https://sks-inc.web.app/)
-### Live Site Link:  https://sks-inc.web.app/
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-### Admin Credintials: 
-<ul>
-<li>Email: strawberry@fruit.com</li>
-  <li>Password: Str@wberry1</li>
-</ul>
+Currently, two official plugins are available:
 
-## Features:
-<ul>
-<li>Login Process verified by Firebase</li>
-<li>JWT Token is attached to protect private route and urls</li>
-  <li>401 status for JWT Token invalid and 403 status for expired JWT Token asserted.</li>
-<li>Admin Dashboard added. Admin verification is applied to both server and client side</li>
-<li>RequireAdmin custom hooks is created to protect urls.</li>
-<li>VerifyAdmin middle tire added to server side to secure APIs</li>
-<li>Card Payment (international) is applied (stripe). </li>
-<li>Custom Animation Button is used </li>
-<li>Whole site is responsive for PC and Mobile.</li>
-<li>Conditional rendering is applied.</li>
-<li>Context API is used.</li>
-</ul>
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Functionality:
-<ul>
-<li>After order placement redirect to My Order page where Payment option available to accomplesh payment.</li>
-<li>With payment stock quantity reduced and order database updated. </li>
-<li>An Admin can make a user admin also can remove a user from admin panel.</li>
-<li>Dashboard is protected require login to access it.</li>
-<li>User can provide review in their dashboard</li>
-<li>User can update their profile in their dashboard</li>
-<li>Email varification is added when a user is registered by email & password. </li>
-<li>If a route is not exists then 404 page is showed</li>
-<li> Login and Log out page and can be toggled between them.</li>
-<li> Password reset link added</li>
+## Expanding the ESLint configuration
 
-</ul>
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-## Technologies/Framework Used:
-<ul>
-<li>React Query</li>
-<li>For Authentication: Firebase</li>
-<li>stripeJs for Card payment</li>
-<li>daisyUI for component library</li>
-<li>Tailwind CSS as library</li>
-<li>React Form Hook</li>
-<li>React Firebase Hook</li>
-<li>React Router</li>
-<li>React Toastify</li>
-<li>To formate date date-fns is used.</li>
-</ul>
+- Configure the top-level `parserOptions` property like this:
+
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
+```
+
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
