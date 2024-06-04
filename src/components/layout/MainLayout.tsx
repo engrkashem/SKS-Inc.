@@ -2,6 +2,7 @@ import { Layout } from 'antd';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import NavBarTop from '../navbar/NavBarTop';
+import FooterComponent from './FooterComponent';
 import SideBar from './SideBar';
 
 const { Header, Sider, Content } = Layout;
@@ -23,6 +24,7 @@ const MainLayout = () => {
         >
           <Outlet />
         </Content>
+        <FooterComponent />
       </Layout>
     </Layout>
   );
