@@ -29,13 +29,17 @@ export default function Register({ setIsModalOpen }) {
           <Divider>Contact Info.</Divider>
           <Row gutter={8}>
             <Col span={24} lg={{ span: 12 }}>
-              <INVInput type="text" label="First Name" name="firstName" />
+              <INVInput type="text" label="First Name" name="name.firstName" />
             </Col>
             <Col span={24} lg={{ span: 12 }}>
-              <INVInput type="text" label="Middle Name" name="middleName" />
+              <INVInput
+                type="text"
+                label="Middle Name"
+                name="name.middleName"
+              />
             </Col>
             <Col span={24} lg={{ span: 12 }}>
-              <INVInput type="text" label="Last Name" name="lastName" />
+              <INVInput type="text" label="Last Name" name="name.lastName" />
             </Col>
             <Col span={24} lg={{ span: 12 }}>
               <INVSelect label="Gender" name="gender" options={genderOptions} />
