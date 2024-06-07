@@ -1,5 +1,5 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import { Button, Layout } from 'antd';
+import { Button, Layout, Space } from 'antd';
 import { useState } from 'react';
 import logo from '../../assets/react.svg';
 import INVModal from '../Form/INVModal';
@@ -7,8 +7,10 @@ const { Header, Sider, Content } = Layout;
 
 const NavBarTop = ({ collapsed, setCollapsed }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalText, setModalText] = useState('Login');
 
-  const showModal = () => {
+  const handleAuthButtonClick = (title) => {
+    setModalText(title);
     setIsModalOpen(true);
   };
 
@@ -41,10 +43,15 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
           {/* <Button>Hello</Button> */}
           <img style={{ height: '20px' }} src={logo} alt="" srcSet="" />
         </div>
-        <Button onClick={showModal}>Login</Button>
+        <Space>
+          <Button onClick={() => handleAuthButtonClick('Login')}>Login</Button>
+          <Button onClick={() => handleAuthButtonClick('Register')}>
+            Register
+          </Button>
+        </Space>
       </Header>
       <INVModal
-        title="Basic"
+        title={modalText}
         isModalOpen={isModalOpen}
         onCancel={handleCancel}
         footer={null}
