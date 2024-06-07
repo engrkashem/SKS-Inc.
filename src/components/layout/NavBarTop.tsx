@@ -2,6 +2,8 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Button, Layout, Space } from 'antd';
 import { useState } from 'react';
 import logo from '../../assets/react.svg';
+import Login from '../Auth/Login';
+import Register from '../Auth/Register';
 import INVModal from '../Form/INVModal';
 const { Header, Sider, Content } = Layout;
 
@@ -56,7 +58,11 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
         onCancel={handleCancel}
         footer={null}
       >
-        <h1>Hello</h1>
+        {modalText === 'Login' ? (
+          <Login setIsModalOpen={setIsModalOpen} />
+        ) : (
+          <Register setIsModalOpen={setIsModalOpen} />
+        )}
       </INVModal>
     </>
   );
