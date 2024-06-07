@@ -1,8 +1,8 @@
 import { Layout } from 'antd';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import NavBarTop from '../navbar/NavBarTop';
 import FooterComponent from './FooterComponent';
+import NavBarTop from './NavBarTop';
 import SideBar from './SideBar';
 
 const { Header, Sider, Content } = Layout;

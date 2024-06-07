@@ -2,7 +2,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Button, Layout } from 'antd';
 import { useState } from 'react';
 import logo from '../../assets/react.svg';
-import ModalComponent from '../Modal/ModalComponent';
+import INVModal from '../Form/INVModal';
 const { Header, Sider, Content } = Layout;
 
 const NavBarTop = ({ collapsed, setCollapsed }) => {
@@ -10,10 +10,6 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
 
   const showModal = () => {
     setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
   };
 
   const handleCancel = () => {
@@ -47,11 +43,14 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
         </div>
         <Button onClick={showModal}>Login</Button>
       </Header>
-      <ModalComponent
-        open={isModalOpen}
-        onOk={handleOk}
+      <INVModal
+        title="Basic"
+        isModalOpen={isModalOpen}
         onCancel={handleCancel}
-      />
+        footer={null}
+      >
+        <h1>Hello</h1>
+      </INVModal>
     </>
   );
 };
