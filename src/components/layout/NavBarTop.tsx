@@ -1,6 +1,7 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Button, Layout, Space } from 'antd';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/react.svg';
 import { getCurrentUser, logout } from '../../redux/features/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -14,12 +15,15 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
   const [modalText, setModalText] = useState('Login');
   const dispatch = useAppDispatch();
 
+  const navigate = useNavigate();
+
   // get current logged in user if available
   const user = useAppSelector(getCurrentUser);
 
   // click handlers
   const handleLogout = () => {
     dispatch(logout());
+    navigate('/home');
   };
 
   const handleAuthButtonClick = (title) => {

@@ -2,7 +2,7 @@ import { HomeOutlined, ProductOutlined } from '@ant-design/icons';
 import Home from '../pages/Home';
 import Products from '../pages/general/Products';
 
-export const generalPaths = [
+export const managerPaths = [
   {
     name: 'Home',
     path: 'home',

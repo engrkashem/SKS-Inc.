@@ -1,5 +1,6 @@
 import { Button, Col, Row } from 'antd';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { useLoginMutation } from '../../redux/features/auth/authApi';
 import { setUser } from '../../redux/features/auth/authSlice';
@@ -10,6 +11,7 @@ import INVForm from '../Form/INVForm';
 import INVInput from '../Form/INVInput';
 
 export default function Login({ setIsModalOpen }) {
+  const navigate = useNavigate();
   // redux hooks
   const dispatch = useAppDispatch();
   const [login] = useLoginMutation();
@@ -27,7 +29,7 @@ export default function Login({ setIsModalOpen }) {
       dispatch(setUser({ user, token: res?.data?.accessToken }));
       toast.success('Login Successful', { id: toastId, duration: 2000 });
 
-      // return navigate(`/${user.role}/dashboard`);
+      navigate(`/${user.role}/home`);
     } catch (err) {
       toast.error('Something went wrong', { id: toastId, duration: 2000 });
     }
