@@ -16,6 +16,14 @@ export const sidebarItemsGenerator = (
         ) : (
           <NavLink to={`${item.path}`}>{item.name}</NavLink>
         ),
+        children: item?.subItem?.map((sItem) => ({
+          key: sItem,
+          label: role ? (
+            <NavLink to={`/${role}/${item.path}`}>{sItem}</NavLink>
+          ) : (
+            <NavLink to={`${item.path}/${sItem}`}>{sItem}</NavLink>
+          ),
+        })),
       });
     }
 
@@ -28,8 +36,10 @@ export const sidebarItemsGenerator = (
             return {
               key: child.name,
               icon: child.icon,
-              label: (
+              label: role ? (
                 <NavLink to={`/${role}/${child.path}`}>{child.name}</NavLink>
+              ) : (
+                <NavLink to={`${child.path}`}>{child.name}</NavLink>
               ),
             };
           }

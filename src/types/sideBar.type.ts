@@ -5,6 +5,7 @@ export type TUserPath = {
   path?: string;
   element?: ReactNode;
   children?: TUserPath[];
+  subItem?: string[];
 };
 
 export type TSideBarItem =
