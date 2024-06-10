@@ -11,7 +11,9 @@ export const sidebarItemsGenerator = (
       acc.push({
         key: item.name,
         icon: item.icon,
-        label: role ? (
+        label: item?.subItem ? (
+          <p>{item.name}</p>
+        ) : role ? (
           <NavLink to={`/${role}/${item.path}`}>{item.name}</NavLink>
         ) : (
           <NavLink to={`${item.path}`}>{item.name}</NavLink>
@@ -21,7 +23,7 @@ export const sidebarItemsGenerator = (
           label: role ? (
             <NavLink to={`/${role}/${item.path}`}>{sItem}</NavLink>
           ) : (
-            <NavLink to={`${item.path}/${sItem}`}>{sItem}</NavLink>
+            <NavLink to={`products/${sItem}`}>{sItem}</NavLink>
           ),
         })),
       });
