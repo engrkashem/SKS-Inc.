@@ -2,6 +2,7 @@ import { Layout, Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { userRole } from '../../constants';
 import { getCurrentToken } from '../../redux/features/auth/authSlice';
+import { useGetProductCategoriesQuery } from '../../redux/features/product/productApi';
 import { useAppSelector } from '../../redux/hooks';
 import { adminPaths } from '../../routes/adminRoutes';
 import { employeePaths } from '../../routes/employeeRoutes';
@@ -15,6 +16,8 @@ const { Sider } = Layout;
 
 const SideBar = ({ collapsed }) => {
   const navigate = useNavigate();
+
+  const { data: categories } = useGetProductCategoriesQuery();
 
   const token = useAppSelector(getCurrentToken);
 
@@ -30,47 +33,31 @@ const SideBar = ({ collapsed }) => {
 
   switch (user!?.role) {
     case userRole.ADMIN || userRole.SUPER_ADMIN:
-      newPath = generatePathsWithDropdown(
-        adminPaths,
-        ['test1', 'test2'],
-        'products'
-      );
+      newPath = generatePathsWithDropdown(adminPaths, categories, 'products');
       sideBarItems = sidebarItemsGenerator(newPath, userRole.ADMIN);
       break;
 
     case userRole.MANAGER:
-      newPath = generatePathsWithDropdown(
-        managerPaths,
-        ['test1', 'test2'],
-        'products'
-      );
+      newPath = generatePathsWithDropdown(managerPaths, categories, 'products');
       sideBarItems = sidebarItemsGenerator(newPath, userRole.MANAGER);
       break;
 
     case userRole.EMPLOYEE:
       newPath = generatePathsWithDropdown(
         employeePaths,
-        ['test1', 'test2'],
+        categories,
         'products'
       );
       sideBarItems = sidebarItemsGenerator(newPath, userRole.EMPLOYEE);
       break;
 
     case userRole.USER:
-      newPath = generatePathsWithDropdown(
-        userPaths,
-        ['test1', 'test2'],
-        'products'
-      );
+      newPath = generatePathsWithDropdown(userPaths, categories, 'products');
       sideBarItems = sidebarItemsGenerator(newPath, userRole.USER);
       break;
 
     default:
-      newPath = generatePathsWithDropdown(
-        generalPaths,
-        ['test1', 'test2'],
-        'products'
-      );
+      newPath = generatePathsWithDropdown(generalPaths, categories, 'products');
       sideBarItems = sidebarItemsGenerator(newPath, null);
       break;
   }
