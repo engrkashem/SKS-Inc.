@@ -10,6 +10,7 @@ import { managerPaths } from '../../routes/managerRoutes';
 import { userPaths } from '../../routes/userRoutes';
 import { TJwtPayloadUser } from '../../types';
 import { sidebarItemsGenerator, verifyToken } from '../../utils';
+import { generatePathsWithDropdown } from '../../utils/generatePathWithDropdown';
 const { Sider } = Layout;
 
 const SideBar = ({ collapsed }) => {
@@ -29,67 +30,47 @@ const SideBar = ({ collapsed }) => {
 
   switch (user!?.role) {
     case userRole.ADMIN || userRole.SUPER_ADMIN:
-      newPath = adminPaths?.map((item) => {
-        if (item.path === 'products') {
-          return {
-            ...item,
-            subItem: ['test1', 'test2'],
-          };
-        }
-        return item;
-      });
+      newPath = generatePathsWithDropdown(
+        adminPaths,
+        ['test1', 'test2'],
+        'products'
+      );
       sideBarItems = sidebarItemsGenerator(newPath, userRole.ADMIN);
       break;
 
     case userRole.MANAGER:
-      newPath = managerPaths?.map((item) => {
-        if (item.path === 'products') {
-          return {
-            ...item,
-            subItem: ['test1', 'test2'],
-          };
-        }
-        return item;
-      });
+      newPath = generatePathsWithDropdown(
+        managerPaths,
+        ['test1', 'test2'],
+        'products'
+      );
       sideBarItems = sidebarItemsGenerator(newPath, userRole.MANAGER);
       break;
 
     case userRole.EMPLOYEE:
-      newPath = employeePaths?.map((item) => {
-        if (item.path === 'products') {
-          return {
-            ...item,
-            subItem: ['test1', 'test2'],
-          };
-        }
-        return item;
-      });
+      newPath = generatePathsWithDropdown(
+        employeePaths,
+        ['test1', 'test2'],
+        'products'
+      );
       sideBarItems = sidebarItemsGenerator(newPath, userRole.EMPLOYEE);
       break;
 
     case userRole.USER:
-      newPath = userPaths?.map((item) => {
-        if (item.path === 'products') {
-          return {
-            ...item,
-            subItem: ['test1', 'test2'],
-          };
-        }
-        return item;
-      });
+      newPath = generatePathsWithDropdown(
+        userPaths,
+        ['test1', 'test2'],
+        'products'
+      );
       sideBarItems = sidebarItemsGenerator(newPath, userRole.USER);
       break;
 
     default:
-      newPath = generalPaths?.map((item) => {
-        if (item.path === 'products') {
-          return {
-            ...item,
-            subItem: ['test1', 'test2'],
-          };
-        }
-        return item;
-      });
+      newPath = generatePathsWithDropdown(
+        generalPaths,
+        ['test1', 'test2'],
+        'products'
+      );
       sideBarItems = sidebarItemsGenerator(newPath, null);
       break;
   }
