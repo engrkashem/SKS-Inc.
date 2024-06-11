@@ -12,7 +12,10 @@ export const managerPaths = [
   {
     name: 'Products',
     path: 'products',
-    element: <Products />,
     icon: <ProductOutlined />,
+  },
+  {
+    path: 'products/:category',
+    element: <Products />,
   },
 ];

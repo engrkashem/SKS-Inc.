@@ -13,7 +13,6 @@ export const generalPaths = [
     name: 'Products',
     path: 'products',
     icon: <ProductOutlined />,
-    subItem: ['test1', 'test2'],
   },
   {
     path: 'products/:category',

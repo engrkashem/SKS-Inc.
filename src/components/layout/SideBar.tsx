@@ -25,25 +25,72 @@ const SideBar = ({ collapsed }) => {
 
   let sideBarItems;
 
+  let newPath;
+
   switch (user!?.role) {
     case userRole.ADMIN || userRole.SUPER_ADMIN:
-      sideBarItems = sidebarItemsGenerator(adminPaths, userRole.ADMIN);
+      newPath = adminPaths?.map((item) => {
+        if (item.path === 'products') {
+          return {
+            ...item,
+            subItem: ['test1', 'test2'],
+          };
+        }
+        return item;
+      });
+      sideBarItems = sidebarItemsGenerator(newPath, userRole.ADMIN);
       break;
 
     case userRole.MANAGER:
-      sideBarItems = sidebarItemsGenerator(managerPaths, userRole.MANAGER);
+      newPath = managerPaths?.map((item) => {
+        if (item.path === 'products') {
+          return {
+            ...item,
+            subItem: ['test1', 'test2'],
+          };
+        }
+        return item;
+      });
+      sideBarItems = sidebarItemsGenerator(newPath, userRole.MANAGER);
       break;
 
     case userRole.EMPLOYEE:
-      sideBarItems = sidebarItemsGenerator(employeePaths, userRole.EMPLOYEE);
+      newPath = employeePaths?.map((item) => {
+        if (item.path === 'products') {
+          return {
+            ...item,
+            subItem: ['test1', 'test2'],
+          };
+        }
+        return item;
+      });
+      sideBarItems = sidebarItemsGenerator(newPath, userRole.EMPLOYEE);
       break;
 
     case userRole.USER:
-      sideBarItems = sidebarItemsGenerator(userPaths, userRole.USER);
+      newPath = userPaths?.map((item) => {
+        if (item.path === 'products') {
+          return {
+            ...item,
+            subItem: ['test1', 'test2'],
+          };
+        }
+        return item;
+      });
+      sideBarItems = sidebarItemsGenerator(newPath, userRole.USER);
       break;
 
     default:
-      sideBarItems = sidebarItemsGenerator(generalPaths, null);
+      newPath = generalPaths?.map((item) => {
+        if (item.path === 'products') {
+          return {
+            ...item,
+            subItem: ['test1', 'test2'],
+          };
+        }
+        return item;
+      });
+      sideBarItems = sidebarItemsGenerator(newPath, null);
       break;
   }
 

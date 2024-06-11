@@ -21,9 +21,9 @@ export const sidebarItemsGenerator = (
         children: item?.subItem?.map((sItem) => ({
           key: sItem,
           label: role ? (
-            <NavLink to={`/${role}/${item.path}`}>{sItem}</NavLink>
+            <NavLink to={`/${role}/${item.path}/${sItem}`}>{sItem}</NavLink>
           ) : (
-            <NavLink to={`products/${sItem}`}>{sItem}</NavLink>
+            <NavLink to={`${item.path}/${sItem}`}>{sItem}</NavLink>
           ),
         })),
       });
