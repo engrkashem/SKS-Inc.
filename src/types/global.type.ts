@@ -31,3 +31,8 @@ export type TResponse<T> = {
 export type TKeyValuePair = {
   [index: string]: any;
 };
+
+export type TQueryParams = {
+  name: string;
+  value: boolean | React.Key;
+};
