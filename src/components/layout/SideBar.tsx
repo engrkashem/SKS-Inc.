@@ -71,9 +71,7 @@ const SideBar = ({ collapsed }) => {
       style={{ height: '100vh', position: 'sticky', top: '0', left: '0' }}
     >
       <div
-        onClick={() =>
-          user?.role ? navigate(`/${user?.role}/home`) : navigate(`/home`)
-        }
+        onClick={() => navigate(`/`)}
         style={{
           color: 'white',
           height: '4rem',

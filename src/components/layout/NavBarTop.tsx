@@ -1,14 +1,19 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import { Button, Layout, Space } from 'antd';
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  ShoppingOutlined,
+} from '@ant-design/icons';
+import { Button, Input, Layout, Space } from 'antd';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../../assets/react.svg';
 import { getCurrentUser, logout } from '../../redux/features/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import Login from '../Auth/Login';
 import Register from '../Auth/Register';
 import INVModal from '../Form/INVModal';
+import SearchBox from '../ui/SearchBox';
 const { Header, Sider, Content } = Layout;
+const { Search } = Input;
 
 const NavBarTop = ({ collapsed, setCollapsed }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -64,9 +69,10 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
           display: 'flex',
           justifyContent: 'space-between',
           padding: '10px',
+          alignItems: 'center',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -77,9 +83,13 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
               height: 64,
             }}
           />
-          {/* <Button>Hello</Button> */}
-          <img style={{ height: '20px' }} src={logo} alt="" srcSet="" />
+
+          <ShoppingOutlined style={{ fontSize: '50px', marginRight: '10px' }} />
+          <h1 style={{ fontWeight: '900', fontSize: '35px' }}>কিনুন </h1>
         </div>
+
+        <SearchBox />
+
         <Space>{content}</Space>
       </Header>
       <INVModal

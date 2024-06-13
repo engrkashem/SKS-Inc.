@@ -4,6 +4,11 @@ import Products from '../pages/general/Products';
 
 export const generalPaths = [
   {
+    path: '/',
+    element: <Home />,
+    icon: <HomeOutlined />,
+  },
+  {
     name: 'Home',
     path: 'home',
     element: <Home />,
