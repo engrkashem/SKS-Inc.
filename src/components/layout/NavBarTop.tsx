@@ -1,8 +1,3 @@
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  ShoppingOutlined,
-} from '@ant-design/icons';
 import { Button, Input, Layout, Space } from 'antd';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +6,8 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import Login from '../Auth/Login';
 import Register from '../Auth/Register';
 import INVModal from '../Form/INVModal';
-import SearchBox from '../ui/SearchBox';
+import CollapseButton from '../ui/NavBar/CollapseButton';
+import SearchBox from '../ui/NavBar/SearchBox';
 const { Header, Sider, Content } = Layout;
 const { Search } = Input;
 
@@ -72,21 +68,7 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
           alignItems: 'center',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: '16px',
-              width: 64,
-              height: 64,
-            }}
-          />
-
-          <ShoppingOutlined style={{ fontSize: '50px', marginRight: '10px' }} />
-          <h1 style={{ fontWeight: '900', fontSize: '35px' }}>কিনুন </h1>
-        </div>
+        <CollapseButton collapsed={collapsed} setCollapsed={setCollapsed} />
 
         <SearchBox />
 

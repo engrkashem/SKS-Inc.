@@ -16,3 +16,5 @@ export const userRole = {
   EMPLOYEE: 'employee',
   USER: 'user',
 };
+
+export const THEME_ORANGE_COLOR = '#FFB455';
