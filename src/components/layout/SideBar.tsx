@@ -1,6 +1,6 @@
 import { Layout, Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { userRole } from '../../constants';
+import { THEME_ORANGE_COLOR, userRole } from '../../constants';
 import { getCurrentToken } from '../../redux/features/auth/authSlice';
 import { useGetAllProductsQuery } from '../../redux/features/product/productApi';
 import { useAppSelector } from '../../redux/hooks';
@@ -68,7 +68,13 @@ const SideBar = ({ collapsed }) => {
       trigger={null}
       collapsible
       collapsed={collapsed}
-      style={{ height: '100vh', position: 'sticky', top: '0', left: '0' }}
+      style={{
+        height: '100vh',
+        position: 'sticky',
+        top: '0',
+        left: '0',
+        backgroundColor: `${THEME_ORANGE_COLOR}`,
+      }}
     >
       <div
         onClick={() => navigate(`/`)}
@@ -89,6 +95,7 @@ const SideBar = ({ collapsed }) => {
         mode="inline"
         defaultSelectedKeys={['1']}
         items={sideBarItems}
+        style={{ backgroundColor: `${THEME_ORANGE_COLOR}` }}
       />
     </Sider>
   );
