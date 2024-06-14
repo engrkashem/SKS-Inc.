@@ -1,7 +1,6 @@
 import { ShoppingOutlined } from '@ant-design/icons';
 
 export default function BrandLogoName({ collapsed }) {
-  console.log(collapsed);
   return (
     <div
       style={{

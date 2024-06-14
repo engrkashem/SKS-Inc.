@@ -23,7 +23,7 @@ export default function SearchBox() {
   return (
     <Search
       style={{ margin: '0 70px' }}
-      status="warning"
+      // status="warning"
       placeholder="Search Product"
       onSearch={onSearch}
       enterButton={customSearchBtn}

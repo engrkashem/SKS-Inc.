@@ -1,4 +1,4 @@
-import { Layout, Menu } from 'antd';
+import { ConfigProvider, Layout, Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { THEME_ORANGE_COLOR, userRole } from '../../constants';
 import { getCurrentToken } from '../../redux/features/auth/authSlice';
@@ -91,13 +91,24 @@ const SideBar = ({ collapsed }) => {
       >
         <BrandLogoName collapsed={collapsed} />
       </div>
-      <Menu
-        theme="dark"
-        mode="inline"
-        defaultSelectedKeys={['1']}
-        items={sideBarItems}
-        style={{ backgroundColor: `${THEME_ORANGE_COLOR}` }}
-      />
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: 'black',
+            colorPrimaryBg: '#ffffff',
+            colorBgContainer: '#FFB455',
+            colorText: 'white',
+          },
+        }}
+      >
+        <Menu
+          // theme="dark"
+          mode="inline"
+          defaultSelectedKeys={['1']}
+          items={sideBarItems}
+          style={{ color: 'white' }}
+        />
+      </ConfigProvider>
     </Sider>
   );
 };
