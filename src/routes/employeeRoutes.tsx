@@ -1,21 +1,12 @@
-import { HomeOutlined, ProductOutlined } from '@ant-design/icons';
+import { HomeOutlined } from '@ant-design/icons';
 import Home from '../pages/Home';
-import Products from '../pages/general/Products';
+import { commonPaths } from './commonRoutes';
 
 export const employeePaths = [
   {
-    name: 'Home',
-    path: 'home',
+    path: '',
     element: <Home />,
     icon: <HomeOutlined />,
   },
-  {
-    name: 'Products',
-    path: 'products',
-    icon: <ProductOutlined />,
-  },
-  {
-    path: 'products/:category',
-    element: <Products />,
-  },
+  ...commonPaths,
 ];
