@@ -9,6 +9,7 @@ const { Header, Sider, Content } = Layout;
 
 const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
+  console.log(collapsed);
 
   return (
     <Layout style={{ minHeight: '100vh' }}>

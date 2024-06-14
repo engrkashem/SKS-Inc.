@@ -12,6 +12,7 @@ import { userPaths } from '../../routes/userRoutes';
 import { TJwtPayloadUser } from '../../types';
 import { sidebarItemsGenerator, verifyToken } from '../../utils';
 import { generatePathsWithDropdown } from '../../utils/generatePathWithDropdown';
+import BrandLogoName from '../ui/NavBar/BrandLogoName';
 const { Sider } = Layout;
 
 const SideBar = ({ collapsed }) => {
@@ -88,7 +89,7 @@ const SideBar = ({ collapsed }) => {
           fontWeight: 'bold',
         }}
       >
-        Inventory Management
+        <BrandLogoName collapsed={collapsed} />
       </div>
       <Menu
         theme="dark"
