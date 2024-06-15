@@ -40,32 +40,3 @@ const productApi = baseApi.injectEndpoints({
 });
 
 export const { useGetAllProductsQuery } = productApi;
-
-/**
-  
-  getProductCategories: builder.query({
-      query: (args) => {
-        const params = new URLSearchParams();
-
-        if (args) {
-          args.forEach((item: TQueryParams) =>
-            params.append(item.name, item.value as string)
-          );
-        }
-
-        return {
-          url: '/enrolled-courses',
-          method: 'GET',
-          params: params,
-        };
-      },
-      providesTags: ['facultyCourses'],
-      transformResponse: (response: TResponseREdux<TEnrolledCourse[]>) => {
-        return {
-          data: response.data,
-          meta: response.meta,
-        };
-      },
-    }),
-
-   */

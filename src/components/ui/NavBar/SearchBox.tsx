@@ -12,7 +12,11 @@ export default function SearchBox() {
         sm={22}
         md={20}
         lg={16}
-        style={{ display: 'flex', alignItems: 'center' }}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          margin: 'auto',
+        }}
       >
         <Search
           placeholder="Search Product"

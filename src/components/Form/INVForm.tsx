@@ -30,8 +30,8 @@ export default function INVForm({
   const methods = useForm(formConfig);
 
   const submitHandler: SubmitHandler<FieldValues> = (data) => {
-    onSubmit(data);
     methods.reset();
+    onSubmit(data);
   };
 
   return (
