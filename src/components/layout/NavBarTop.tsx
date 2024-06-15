@@ -110,12 +110,7 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
     );
   } else {
     content = (
-      <>
-        <Button onClick={() => handleAuthButtonClick('Login')}>Login</Button>
-        <Button onClick={() => handleAuthButtonClick('Register')}>
-          Register
-        </Button>
-      </>
+      <Button onClick={() => handleAuthButtonClick('Login')}>Login</Button>
     );
   }
 
@@ -157,9 +152,12 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
         footer={null}
       >
         {modalText === 'Login' ? (
-          <Login setIsModalOpen={setIsModalOpen} />
+          <Login setIsModalOpen={setIsModalOpen} setModalText={setModalText} />
         ) : (
-          <Register setIsModalOpen={setIsModalOpen} />
+          <Register
+            setIsModalOpen={setIsModalOpen}
+            setModalText={setModalText}
+          />
         )}
       </INVModal>
     </>

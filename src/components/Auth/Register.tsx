@@ -1,11 +1,11 @@
 import { Button, Col, Divider, Row } from 'antd';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
-import { genderOptions } from '../../constants';
+import { THEME_ORANGE_COLOR, genderOptions } from '../../constants';
 import INVForm from '../Form/INVForm';
 import INVInput from '../Form/INVInput';
 import INVSelect from '../Form/INVSelect';
 
-export default function Register({ setIsModalOpen }) {
+export default function Register({ setIsModalOpen, setModalText }) {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
     setIsModalOpen(false);
@@ -68,6 +68,17 @@ export default function Register({ setIsModalOpen }) {
 
           <Button htmlType="submit">Register</Button>
         </INVForm>
+
+        <p style={{ marginTop: '10px' }}>
+          Already have an Account?{' '}
+          <Button
+            style={{ color: THEME_ORANGE_COLOR, fontWeight: '700' }}
+            onClick={() => setModalText('Login')}
+            type="link"
+          >
+            Login
+          </Button>
+        </p>
       </Col>
     </Row>
   );

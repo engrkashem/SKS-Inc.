@@ -2,6 +2,7 @@ import { Button, Col, Row } from 'antd';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { THEME_ORANGE_COLOR } from '../../constants';
 import { useLoginMutation } from '../../redux/features/auth/authApi';
 import { setUser } from '../../redux/features/auth/authSlice';
 import { useAppDispatch } from '../../redux/hooks';
@@ -10,7 +11,7 @@ import { verifyToken } from '../../utils';
 import INVForm from '../Form/INVForm';
 import INVInput from '../Form/INVInput';
 
-export default function Login({ setIsModalOpen }) {
+export default function Login({ setIsModalOpen, setModalText }) {
   const navigate = useNavigate();
   // redux hooks
   const dispatch = useAppDispatch();
@@ -46,6 +47,16 @@ export default function Login({ setIsModalOpen }) {
 
           <Button htmlType="submit">Login</Button>
         </INVForm>
+        <p style={{ marginTop: '10px' }}>
+          New to this Site?{' '}
+          <Button
+            style={{ color: THEME_ORANGE_COLOR, fontWeight: '700' }}
+            onClick={() => setModalText('Register')}
+            type="link"
+          >
+            Register
+          </Button>
+        </p>
       </Col>
     </Row>
   );
