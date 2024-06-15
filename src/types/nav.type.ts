@@ -21,3 +21,10 @@ export type TRoute = {
   path: string;
   element: ReactNode;
 };
+
+export type TProfileMenuItem = {
+  label: string;
+  handler?: any;
+  style?: Record<string, string>;
+  type?: string;
+};

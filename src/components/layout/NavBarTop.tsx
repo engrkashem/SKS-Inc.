@@ -11,6 +11,8 @@ import { THEME_ORANGE_COLOR } from '../../constants';
 import { getCurrentUser, logout } from '../../redux/features/auth/authSlice';
 import { useGetMeQuery } from '../../redux/features/user/userApi';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { TProfileMenuItem } from '../../types';
+import { dropDownLinkGenerator } from '../../utils';
 import Login from '../Auth/Login';
 import Register from '../Auth/Register';
 import INVModal from '../Form/INVModal';
@@ -45,40 +47,31 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
     setIsModalOpen(false);
   };
 
-  const items: MenuProps['items'] = [
+  const profileMenuItems: TProfileMenuItem[] = [
     {
-      key: '1',
-      label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.antgroup.com"
-        >
-          1st menu item
-        </a>
-      ),
+      label: `Mr. ${userInfo?.name?.lastName}`,
+      handler: handleLogout,
+      style: {
+        color: THEME_ORANGE_COLOR,
+        fontSize: '1.3rem',
+        fontWeight: '900',
+      },
+      type: 'link',
     },
     {
-      key: '2',
-      label: (
-        <Button style={{ color: THEME_ORANGE_COLOR }} type="link">
-          Update Profile
-        </Button>
-      ),
+      label: `Update Profile`,
+      style: { color: THEME_ORANGE_COLOR, fontWeight: '500' },
+      type: 'link',
     },
     {
-      key: '3',
-      label: (
-        <Button
-          style={{ color: THEME_ORANGE_COLOR }}
-          type="link"
-          onClick={handleLogout}
-        >
-          Logout
-        </Button>
-      ),
+      label: `Logout`,
+      handler: handleLogout,
+      style: { color: THEME_ORANGE_COLOR, fontWeight: '500' },
+      type: 'link',
     },
   ];
+
+  const items: MenuProps['items'] = dropDownLinkGenerator(profileMenuItems);
 
   // decide what to render in navbar
   let content;
