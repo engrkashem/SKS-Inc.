@@ -8,6 +8,7 @@ type TInputProps = {
   disabled?: boolean;
   value?: string;
   size?: string;
+  defaultValue?: string;
 };
 
 export default function INVInput({
@@ -17,6 +18,7 @@ export default function INVInput({
   size,
   disabled,
   value,
+  defaultValue,
 }: TInputProps) {
   return (
     <div style={{ marginBottom: '20px' }}>
@@ -31,6 +33,8 @@ export default function INVInput({
               size={size || 'large'}
               disabled={disabled}
               value={value}
+              defaultValue={defaultValue}
+              // onChange={onChange}
             />
           </Form.Item>
         )}

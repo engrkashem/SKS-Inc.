@@ -13,6 +13,7 @@ type TSelectProps = {
     | undefined;
   disabled?: boolean;
   mode?: undefined | 'multiple' | 'tags';
+  defaultValue?: string;
 };
 
 export default function INVSelect({
@@ -21,6 +22,7 @@ export default function INVSelect({
   options,
   disabled,
   mode,
+  defaultValue,
 }: TSelectProps) {
   return (
     <Controller
@@ -34,6 +36,7 @@ export default function INVSelect({
             options={options}
             size="large"
             disabled={disabled}
+            defaultValue={defaultValue}
           />
           {error && <small style={{ color: 'red' }}>{error.message}</small>}
         </Form.Item>
