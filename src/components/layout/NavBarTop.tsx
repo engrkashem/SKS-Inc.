@@ -3,8 +3,15 @@ import {
   MenuUnfoldOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Avatar, Button, Dropdown, Input, Layout, Space } from 'antd';
+import {
+  Avatar,
+  Button,
+  Dropdown,
+  Input,
+  Layout,
+  MenuProps,
+  Space,
+} from 'antd';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { THEME_ORANGE_COLOR } from '../../constants';
@@ -21,28 +28,33 @@ const { Header, Sider, Content } = Layout;
 const { Search } = Input;
 
 const NavBarTop = ({ collapsed, setCollapsed }) => {
+  // Local react hooks
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalText, setModalText] = useState('Login');
+  const navigate = useNavigate();
+
+  // redux rtk hooks
   const dispatch = useAppDispatch();
 
   // get current logged in user if available
   const user = useAppSelector(getCurrentUser);
 
+  // get information of current user
   const { data: userInfo } = useGetMeQuery(undefined, { skip: !user?._id });
 
-  const navigate = useNavigate();
-
-  // click handlers
+  // Logout handlers
   const handleLogout = () => {
     dispatch(logout());
     navigate('/home');
   };
 
+  // Login and Register Click handlers to manage modal
   const handleAuthButtonClick = (title) => {
     setModalText(title);
     setIsModalOpen(true);
   };
 
+  // Modal close handler
   const handleCancel = () => {
     setIsModalOpen(false);
   };
