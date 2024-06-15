@@ -7,7 +7,9 @@ import {
 import About from '../pages/About';
 import Contact from '../pages/Contact';
 import Home from '../pages/Home';
-import Products from '../pages/general/Products';
+import Products from '../pages/common/Products';
+import Profile from '../pages/common/Profile';
+import UpdateProfile from '../pages/common/UpdateProfile';
 import { TUserPath } from '../types';
 
 export const commonPaths: TUserPath[] = [
@@ -37,5 +39,13 @@ export const commonPaths: TUserPath[] = [
     path: 'contact-us',
     icon: <PhoneOutlined />,
     element: <Contact />,
+  },
+  {
+    path: 'update-profile',
+    element: <UpdateProfile />,
+  },
+  {
+    path: 'my-profile',
+    element: <Profile />,
   },
 ];

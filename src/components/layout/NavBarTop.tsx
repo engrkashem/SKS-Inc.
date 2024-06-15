@@ -59,10 +59,14 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
     setIsModalOpen(false);
   };
 
+  // Profile Dropdown list
   const profileMenuItems: TProfileMenuItem[] = [
     {
       label: `Mr. ${userInfo?.name?.lastName}`,
-      handler: handleLogout,
+      handler: () =>
+        user?.role
+          ? navigate(`/${user.role}/my-profile`)
+          : navigate(`/my-profile`),
       style: {
         color: THEME_ORANGE_COLOR,
         fontSize: '1.3rem',
@@ -72,6 +76,10 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
     },
     {
       label: `Update Profile`,
+      handler: () =>
+        user?.role
+          ? navigate(`/${user.role}/update-profile`)
+          : navigate(`/update-profile`),
       style: { color: THEME_ORANGE_COLOR, fontWeight: '500' },
       type: 'link',
     },
