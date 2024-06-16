@@ -8,11 +8,20 @@ const userApi = baseApi.injectEndpoints({
         url: 'users/get-me',
         method: 'GET',
       }),
+      providesTags: ['myInfo'],
       transformResponse: (response: TResponseRedux<TUser>) => {
         return response.data;
       },
     }),
+    updateMyProfile: builder.mutation({
+      query: (data) => ({
+        url: '/users/update-my-profile',
+        method: 'PATCH',
+        body: data,
+      }),
+      invalidatesTags: ['myInfo'],
+    }),
   }),
 });
 
-export const { useGetMeQuery } = userApi;
+export const { useGetMeQuery, useUpdateMyProfileMutation } = userApi;

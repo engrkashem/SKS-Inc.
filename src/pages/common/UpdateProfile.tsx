@@ -1,55 +1,47 @@
 import { Button, Col, Divider, Form, Input, Row } from 'antd';
-import { useState } from 'react';
 import { Controller, FieldValues, SubmitHandler } from 'react-hook-form';
+import { toast } from 'sonner';
 import INVForm from '../../components/Form/INVForm';
 import INVInput from '../../components/Form/INVInput';
 import INVSelect from '../../components/Form/INVSelect';
 import Loading from '../../components/ui/Loading';
 import { genderOptions } from '../../constants';
 import { getCurrentToken } from '../../redux/features/auth/authSlice';
-import { useGetMeQuery } from '../../redux/features/user/userApi';
+import {
+  useGetMeQuery,
+  useUpdateMyProfileMutation,
+} from '../../redux/features/user/userApi';
 import { useAppSelector } from '../../redux/hooks';
+import { TCreateResponse, TUser } from '../../types';
 
 export default function UpdateProfile() {
+  // get current user token
   const token = useAppSelector(getCurrentToken);
 
+  // fetch profile info
   const { data: profileInfo } = useGetMeQuery(undefined, { skip: !token });
-  console.log(profileInfo);
 
-  // initial field states
-  const [name, setName] = useState(profileInfo?.name);
+  // update profile
+  const [updateProfile] = useUpdateMyProfileMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
-    // const toastId = toast.loading('Student is Creating');
-    // const studentData = {
-    //   password: 'student123',
-    //   student: data,
-    // };
-    // // console.log(data);
-    // const formData = new FormData();
-    // formData.append('data', JSON.stringify(studentData));
-    // formData.append('file', data?.image);
-    // //! This is for development just for checking
-    // // console.log([...formData.entries()]);
-    // // addStudent(formData);
-    // try {
-    //   const res = (await addStudent(formData)) as TCreateResponse<
-    //     TCreateStudentData[]
-    //   >;
-    //   console.log(res);
-    //   if (res?.error) {
-    //     toast.error(res?.error?.data?.message, {
-    //       id: toastId,
-    //     });
-    //   } else {
-    //     toast.success(res?.data?.message, { id: toastId });
-    //   }
-    // } catch {
-    //   toast.error('Something went wrong! Failed to create student', {
-    //     id: toastId,
-    //   });
-    // }
+    const toastId = toast.loading('Your profile is Creating');
+
+    try {
+      const res = (await updateProfile(data)) as TCreateResponse<TUser>;
+
+      if (res?.error) {
+        toast.error(res?.error?.data?.message, {
+          id: toastId,
+        });
+      } else {
+        toast.success(res?.data?.message, { id: toastId });
+      }
+    } catch {
+      toast.error('Something went wrong! Failed to Update profile', {
+        id: toastId,
+      });
+    }
   };
 
   if (!profileInfo)

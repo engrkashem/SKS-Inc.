@@ -3,7 +3,7 @@ import Meta from 'antd/es/card/Meta';
 
 export default function Loading() {
   return (
-    <Card style={{ width: '100%', marginTop: 16 }} loading={true}>
+    <Card style={{ width: '50%', marginTop: 16 }} loading={true}>
       <Meta
         avatar={
           <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />

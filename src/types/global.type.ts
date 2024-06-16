@@ -36,3 +36,14 @@ export type TQueryParams = {
   name: string;
   value: boolean | React.Key;
 };
+
+export type TCreateResponse<T> = {
+  data?: {
+    data?: T;
+    message: string;
+    success: boolean;
+    links: TLinks;
+    status: boolean;
+  };
+  error?: TError;
+};
