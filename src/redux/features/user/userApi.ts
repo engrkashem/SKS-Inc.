@@ -21,7 +21,18 @@ const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['myInfo'],
     }),
+    hostToImgBB: builder.mutation({
+      query: ({ data, key }) => ({
+        url: `https://api.imgbb.com/1/upload?key=${key}`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useGetMeQuery, useUpdateMyProfileMutation } = userApi;
+export const {
+  useGetMeQuery,
+  useUpdateMyProfileMutation,
+  useHostToImgBBMutation,
+} = userApi;

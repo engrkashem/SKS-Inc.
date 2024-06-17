@@ -9,6 +9,7 @@ import { genderOptions } from '../../constants';
 import { getCurrentToken } from '../../redux/features/auth/authSlice';
 import {
   useGetMeQuery,
+  useHostToImgBBMutation,
   useUpdateMyProfileMutation,
 } from '../../redux/features/user/userApi';
 import { useAppSelector } from '../../redux/hooks';
@@ -23,12 +24,41 @@ export default function UpdateProfile() {
 
   // update profile
   const [updateProfile] = useUpdateMyProfileMutation();
+  const [hostToImgBB] = useHostToImgBBMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading('Your profile is Creating');
+    // console.log(data, data.profilePic);
+    const image = data.profilePic;
+    const formData = new FormData();
+    formData.append('image', image);
+
+    const updatedProfileData = { ...data };
 
     try {
-      const res = (await updateProfile(data)) as TCreateResponse<TUser>;
+      // imhBB key from .env file
+      // const imgBBKey = import.meta.env.VITE_IMGBB_KEY;
+
+      // const response = (await hostToImgBB({
+      //   data: formData,
+      //   key: imgBBKey,
+      // })) as any;
+      // console.log(response);
+
+      // if (response.success) {
+      //   const imgUrl = response.data.url;
+      //   updateProfile.profilePic = imgUrl;
+      // }
+
+      // const res = (await updateProfile(updateProfile, {
+      //   skip: !response.success,
+      // })) as TCreateResponse<TUser>;
+
+      const res = (await updateProfile(
+        updateProfile
+      )) as TCreateResponse<TUser>;
+
+      // console.log(res);
 
       if (res?.error) {
         toast.error(res?.error?.data?.message, {
@@ -95,7 +125,7 @@ export default function UpdateProfile() {
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <Controller
-                name="image"
+                name="profilePic"
                 render={({ field: { onChange, value, ...field } }) => (
                   <Form.Item label="Profile Picture">
                     <Input
