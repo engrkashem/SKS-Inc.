@@ -17,7 +17,7 @@ const MainLayout = () => {
         <NavBarTop collapsed={collapsed} setCollapsed={setCollapsed} />
         <Content
           style={{
-            padding: 24,
+            padding: 5,
             minHeight: 280,
             background: '#ffffff',
           }}
