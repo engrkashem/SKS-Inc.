@@ -1,5 +1,6 @@
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { Card, Col, Flex } from 'antd';
+import { Link } from 'react-router-dom';
 import CustomImage from '../../customAntComponents/CustomImage';
 import CustomButton from '../CustomButton';
 
@@ -20,10 +21,10 @@ export default function ProductCard({ product }) {
         cover={<CustomImage src={product.img} />}
         style={{ height: 400 }}
       >
-        <div>
+        <Link style={{ color: 'black' }} to={`${product._id}`}>
           <h1>{productName}</h1>
           <p>{productDescription}</p>
-        </div>
+        </Link>
         <Flex
           style={{ marginTop: '20px' }}
           justify="space-between"

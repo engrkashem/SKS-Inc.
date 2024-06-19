@@ -1,7 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
-import About from '../pages/About';
-import Contact from '../pages/Contact';
 import { routesGenerator } from '../utils/routesGenerator';
 import { adminPaths } from './adminRoutes';
 import { employeePaths } from './employeeRoutes';
@@ -34,14 +32,6 @@ const router = createBrowserRouter([
     path: '/admin',
     element: <App />,
     children: routesGenerator(adminPaths),
-  },
-  {
-    path: '/about-us',
-    element: <About />,
-  },
-  {
-    path: '/contact-us',
-    element: <Contact />,
   },
 ]);
 

@@ -4,6 +4,7 @@ import {
   ProductOutlined,
   UserOutlined,
 } from '@ant-design/icons';
+import ProductDetails from '../components/ui/Products/ProductDetails';
 import About from '../pages/About';
 import Contact from '../pages/Contact';
 import Home from '../pages/Home';
@@ -27,6 +28,10 @@ export const commonPaths: TUserPath[] = [
   {
     path: 'products/:category',
     element: <Products />,
+  },
+  {
+    path: 'products/:category/:productId',
+    element: <ProductDetails />,
   },
   {
     name: 'About',
