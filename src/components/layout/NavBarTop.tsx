@@ -15,7 +15,11 @@ import {
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { THEME_ORANGE_COLOR } from '../../constants';
-import { getCurrentUser, logout } from '../../redux/features/auth/authSlice';
+import {
+  getCurrentUser,
+  logout,
+  setIsModalOpen,
+} from '../../redux/features/auth/authSlice';
 import { useGetMeQuery } from '../../redux/features/user/userApi';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { TProfileMenuItem } from '../../types';
@@ -29,7 +33,6 @@ const { Search } = Input;
 
 const NavBarTop = ({ collapsed, setCollapsed }) => {
   // Local react hooks
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalText, setModalText] = useState('Login');
   const navigate = useNavigate();
 
@@ -51,12 +54,12 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
   // Login and Register Click handlers to manage modal
   const handleAuthButtonClick = (title) => {
     setModalText(title);
-    setIsModalOpen(true);
+    dispatch(setIsModalOpen(true));
   };
 
   // Modal close handler
   const handleCancel = () => {
-    setIsModalOpen(false);
+    dispatch(setIsModalOpen(false));
   };
 
   // Profile Dropdown list
@@ -145,19 +148,11 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
         <Space>{content}</Space>
       </Header>
       {/* Model Component render  */}
-      <INVModal
-        title={modalText}
-        isModalOpen={isModalOpen}
-        onCancel={handleCancel}
-        footer={null}
-      >
+      <INVModal title={modalText} onCancel={handleCancel} footer={null}>
         {modalText === 'Login' ? (
-          <Login setIsModalOpen={setIsModalOpen} setModalText={setModalText} />
+          <Login setModalText={setModalText} />
         ) : (
-          <Register
-            setIsModalOpen={setIsModalOpen}
-            setModalText={setModalText}
-          />
+          <Register setModalText={setModalText} />
         )}
       </INVModal>
     </>

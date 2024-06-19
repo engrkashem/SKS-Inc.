@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { THEME_ORANGE_COLOR } from '../../constants';
 import { useLoginMutation } from '../../redux/features/auth/authApi';
-import { setUser } from '../../redux/features/auth/authSlice';
+import { setIsModalOpen, setUser } from '../../redux/features/auth/authSlice';
 import { useAppDispatch } from '../../redux/hooks';
 import { TJwtPayloadUser } from '../../types';
 import { verifyToken } from '../../utils';
 import INVForm from '../Form/INVForm';
 import INVInput from '../Form/INVInput';
 
-export default function Login({ setIsModalOpen, setModalText }) {
+export default function Login({ setModalText }) {
   const navigate = useNavigate();
   // redux hooks
   const dispatch = useAppDispatch();
@@ -35,7 +35,7 @@ export default function Login({ setIsModalOpen, setModalText }) {
       toast.error('Something went wrong', { id: toastId, duration: 2000 });
     }
 
-    setIsModalOpen(false);
+    dispatch(setIsModalOpen(false));
   };
 
   return (

@@ -1,7 +1,8 @@
 import { Modal } from 'antd';
+import { getModalState } from '../../redux/features/auth/authSlice';
+import { useAppSelector } from '../../redux/hooks';
 
 type TModalProps = {
-  isModalOpen: boolean;
   title: string;
   onOk?: any;
   onCancel?: any;
@@ -11,12 +12,12 @@ type TModalProps = {
 
 export default function INVModal({
   title,
-  isModalOpen,
   onOk,
   onCancel,
   children,
   footer,
 }: TModalProps) {
+  const isModalOpen = useAppSelector(getModalState);
   return (
     <Modal
       title={title}

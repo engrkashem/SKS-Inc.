@@ -1,14 +1,18 @@
 import { Button, Col, Divider, Row } from 'antd';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { THEME_ORANGE_COLOR, genderOptions } from '../../constants';
+import { setIsModalOpen } from '../../redux/features/auth/authSlice';
+import { useAppDispatch } from '../../redux/hooks';
 import INVForm from '../Form/INVForm';
 import INVInput from '../Form/INVInput';
 import INVSelect from '../Form/INVSelect';
 
-export default function Register({ setIsModalOpen, setModalText }) {
+export default function Register({ setModalText }) {
+  const dispatch = useAppDispatch();
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
-    setIsModalOpen(false);
+    dispatch(setIsModalOpen(false));
   };
 
   return (
@@ -83,19 +87,3 @@ export default function Register({ setIsModalOpen, setModalText }) {
     </Row>
   );
 }
-
-/**
-
-name?: TUserName;
-  email: string;
-  password?: string;
-  gender?: TGender;
-  address?: TAddress;
-  contactNo?: string;
-  profilePic: string;
-  role: TRole;
-  isDeleted: boolean;
-  isGoogleAuthenticated: boolean;
-  isBlocked: boolean;
-
- */
