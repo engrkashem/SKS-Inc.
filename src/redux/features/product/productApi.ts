@@ -1,5 +1,6 @@
 import {
   TAllProductsResponse,
+  TProduct,
   TQueryParams,
   TResponseRedux,
 } from '../../../types';
@@ -29,6 +30,17 @@ const productApi = baseApi.injectEndpoints({
         return { categories, products };
       },
     }),
+    getProduct: builder.query({
+      query: (id) => ({
+        url: `/products/${id}`,
+        method: 'GET',
+      }),
+
+      transformResponse: (response: TResponseRedux<TProduct>) => {
+        const { data, links } = response;
+        return { data, links };
+      },
+    }),
     // updateStudentsMarks: builder.mutation({
     //   query: (data) => ({
     //     url: '/enrolled-courses/update-enrolled-course-marks',
@@ -39,4 +51,4 @@ const productApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetAllProductsQuery } = productApi;
+export const { useGetAllProductsQuery, useGetProductQuery } = productApi;
