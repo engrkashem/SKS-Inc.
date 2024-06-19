@@ -1,7 +1,7 @@
 import { Row } from 'antd';
 import { useParams } from 'react-router-dom';
 import Loading from '../../components/ui/Loading';
-import ProductCard from '../../components/ui/ProductCard';
+import ProductCard from '../../components/ui/Products/ProductCard';
 import { useGetAllProductsQuery } from '../../redux/features/product/productApi';
 
 export default function Products() {
