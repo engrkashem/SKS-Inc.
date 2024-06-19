@@ -11,13 +11,12 @@ export default function Products() {
     data: productsData,
     isLoading,
     isFetching,
-  } = useGetAllProductsQuery();
+  } = useGetAllProductsQuery([{ name: 'category', value: category }]);
   // [{ name: 'category', value: category }]
 
   if (isLoading || isFetching) return <Loading />;
 
   const { products } = productsData;
-  console.log(products);
 
   return (
     <div>
