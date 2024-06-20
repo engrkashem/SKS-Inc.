@@ -30,7 +30,7 @@ export default function Login({ setModalText }) {
       dispatch(setUser({ user, token: res?.data?.accessToken }));
       toast.success('Login Successful', { id: toastId, duration: 2000 });
 
-      navigate(`/${user.role}/home`);
+      // navigate(`/${user.role}/home`);
     } catch (err) {
       toast.error('Something went wrong', { id: toastId, duration: 2000 });
     }

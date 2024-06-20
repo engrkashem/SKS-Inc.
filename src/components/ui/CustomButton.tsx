@@ -6,6 +6,7 @@ type TCustomButtonProp = {
   icon?: ReactNode;
   iconPosition?: string;
   children: string;
+  handler?: any;
 };
 
 export default function CustomButton({
@@ -13,9 +14,15 @@ export default function CustomButton({
   icon,
   iconPosition,
   children,
+  handler,
 }: TCustomButtonProp) {
   return (
-    <Button type={type} icon={icon} iconPosition={iconPosition}>
+    <Button
+      onClick={handler && handler}
+      type={type}
+      icon={icon}
+      iconPosition={iconPosition}
+    >
       {children}
     </Button>
   );
