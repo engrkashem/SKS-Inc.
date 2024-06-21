@@ -16,7 +16,7 @@ import {
   Space,
 } from 'antd';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { THEME_ORANGE_COLOR } from '../../constants';
 import {
   getCurrentUser,
@@ -106,10 +106,12 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
     content = (
       <Flex align="center" gap="middle">
         <Badge count={1}>
-          <ShoppingCartOutlined
-            // className="theme-color"
-            style={{ fontSize: '1.7rem', marginTop: '5px' }}
-          />
+          <Link to={`my-shopping-cart`} style={{ color: 'black' }}>
+            <ShoppingCartOutlined
+              // className="theme-color"
+              style={{ fontSize: '1.7rem', marginTop: '5px' }}
+            />
+          </Link>
         </Badge>
 
         <Dropdown menu={{ items }} placement="bottomRight">
