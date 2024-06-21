@@ -1,12 +1,15 @@
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  ShoppingCartOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import {
   Avatar,
+  Badge,
   Button,
   Dropdown,
+  Flex,
   Input,
   Layout,
   MenuProps,
@@ -101,7 +104,14 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
 
   if (user?._id) {
     content = (
-      <>
+      <Flex align="center" gap="middle">
+        <Badge count={1}>
+          <ShoppingCartOutlined
+            // className="theme-color"
+            style={{ fontSize: '1.7rem', marginTop: '5px' }}
+          />
+        </Badge>
+
         <Dropdown menu={{ items }} placement="bottomRight">
           {userInfo?.profilePic ? (
             <Avatar src={<img src={userInfo?.profilePic} alt="avatar" />} />
@@ -109,7 +119,7 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
             <Avatar icon={<UserOutlined />} />
           )}
         </Dropdown>
-      </>
+      </Flex>
     );
   } else {
     content = (
