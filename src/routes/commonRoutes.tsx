@@ -4,11 +4,11 @@ import {
   ProductOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import MyCarts from '../components/ui/Order/MyCarts';
 import ProductDetails from '../components/ui/Products/ProductDetails';
 import About from '../pages/About';
 import Contact from '../pages/Contact';
 import Home from '../pages/Home';
+import MyCarts from '../pages/common/MyCarts';
 import Products from '../pages/common/Products';
 import Profile from '../pages/common/Profile';
 import UpdateProfile from '../pages/common/UpdateProfile';

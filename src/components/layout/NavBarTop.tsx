@@ -109,7 +109,7 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
           <Link to={`my-shopping-cart`} style={{ color: 'black' }}>
             <ShoppingCartOutlined
               // className="theme-color"
-              style={{ fontSize: '1.7rem', marginTop: '5px' }}
+              style={{ fontSize: '1.7rem' }}
             />
           </Link>
         </Badge>

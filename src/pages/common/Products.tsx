@@ -7,11 +7,17 @@ import { useGetAllProductsQuery } from '../../redux/features/product/productApi'
 export default function Products() {
   const { category } = useParams();
 
+  const queryParams = [
+    { name: 'category', value: category },
+    { name: 'limit', value: 10 },
+    { name: 'page', value: 1 },
+  ];
+
   const {
     data: productsData,
     isLoading,
     isFetching,
-  } = useGetAllProductsQuery([{ name: 'category', value: category }]);
+  } = useGetAllProductsQuery(queryParams);
   // [{ name: 'category', value: category }]
 
   if (isLoading || isFetching) return <Loading />;
