@@ -23,6 +23,7 @@ import {
   logout,
   setIsModalOpen,
 } from '../../redux/features/auth/authSlice';
+import { useGetMyShoppingCartsQuery } from '../../redux/features/order/orderApi';
 import { useGetMeQuery } from '../../redux/features/user/userApi';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { TProfileMenuItem } from '../../types';
@@ -47,6 +48,11 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
 
   // get information of current user
   const { data: userInfo } = useGetMeQuery(undefined, { skip: !user?._id });
+
+  // get curt data
+  const { data: cartsData } = useGetMyShoppingCartsQuery(undefined, {
+    skip: !user,
+  });
 
   // Logout handlers
   const handleLogout = () => {
@@ -105,7 +111,7 @@ const NavBarTop = ({ collapsed, setCollapsed }) => {
   if (user?._id) {
     content = (
       <Flex align="center" gap="middle">
-        <Badge count={1}>
+        <Badge count={cartsData?.pagination.total}>
           <Link to={`my-shopping-cart`} style={{ color: 'black' }}>
             <ShoppingCartOutlined
               // className="theme-color"
