@@ -1,4 +1,6 @@
+import { Flex } from 'antd';
 import Loading from '../../components/ui/Loading';
+import Cart from '../../components/ui/Products/Cart';
 import { useGetMyShoppingCartsQuery } from '../../redux/features/order/orderApi';
 
 export default function MyCarts() {
@@ -16,11 +18,16 @@ export default function MyCarts() {
   if (isLoading || isFetching) return <Loading />;
 
   const shoppingCarts = shoppingCartsData?.data;
-  console.log(shoppingCarts, shoppingCartsData?.pagination);
+  // console.log(shoppingCarts, shoppingCartsData?.pagination);
 
   return (
-    <div>
-      <h1>This is MyCarts page</h1>
-    </div>
+    <Flex gap={8}>
+      <div>
+        {shoppingCarts?.map((item) => <Cart key={item._id} order={item} />)}
+      </div>
+      <div style={{ width: '40%', backgroundColor: 'red' }}>
+        <h2>Order Summary</h2>
+      </div>
+    </Flex>
   );
 }
