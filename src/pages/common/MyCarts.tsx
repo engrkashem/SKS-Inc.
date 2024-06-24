@@ -1,5 +1,6 @@
 import { Flex } from 'antd';
 import Loading from '../../components/ui/Loading';
+import OrderSummary from '../../components/ui/Order/OrderSummary';
 import Cart from '../../components/ui/Products/Cart';
 import { useGetMyShoppingCartsQuery } from '../../redux/features/order/orderApi';
 
@@ -21,13 +22,11 @@ export default function MyCarts() {
   // console.log(shoppingCarts, shoppingCartsData?.pagination);
 
   return (
-    <Flex gap={8}>
+    <Flex gap={10} style={{ backgroundColor: '#f5f5f5', padding: '5px' }}>
       <div>
         {shoppingCarts?.map((item) => <Cart key={item._id} order={item} />)}
       </div>
-      <div style={{ width: '40%', backgroundColor: 'red' }}>
-        <h2>Order Summary</h2>
-      </div>
+      <OrderSummary />
     </Flex>
   );
 }
