@@ -1,11 +1,30 @@
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { Avatar, Checkbox, Flex, Input } from 'antd';
+import { useState } from 'react';
 
 export default function Cart({ order }) {
-  const { product, orderQty } = order;
+  const [orderQty, setOrderQty] = useState(Number(order?.orderQty) || 0);
+  const { product } = order;
   const { name, img, description, price } = product;
-  console.log({ product });
-  console.log({ order });
+  //   console.log({ product });
+  // console.log({ order });
+  console.log(orderQty);
+
+  //   event handlers
+  const handleOrderQtyChange = () => {
+    console.log('from handleOrderQtyChange', orderQty);
+  };
+
+  const handleOrderQtyChangeButton = async (num) => {
+    let newNum;
+    await setOrderQty((prev) => {
+      newNum = prev + num;
+      newNum = newNum >= 0 ? newNum : 0;
+      return newNum;
+    });
+    console.log('from handleOrderQtyChangeButton', newNum);
+  };
+
   return (
     <Flex
       justify="space-between"
@@ -34,10 +53,24 @@ export default function Cart({ order }) {
       </span>
 
       <Input
+        onChange={(e) => setOrderQty(Number(e.target.value))}
+        onPressEnter={handleOrderQtyChange}
         style={{ width: '20%' }}
-        addonBefore={<PlusOutlined />}
-        addonAfter={<MinusOutlined />}
-        defaultValue={orderQty}
+        addonBefore={
+          <PlusOutlined
+            onClick={() => {
+              handleOrderQtyChangeButton(1);
+            }}
+          />
+        }
+        addonAfter={
+          <MinusOutlined
+            onClick={() => {
+              handleOrderQtyChangeButton(-1);
+            }}
+          />
+        }
+        value={orderQty}
       />
     </Flex>
   );
