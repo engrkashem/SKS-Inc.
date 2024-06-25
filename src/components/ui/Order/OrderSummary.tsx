@@ -1,6 +1,18 @@
 import { Button, Flex, Input, Space } from 'antd';
+import { useGetMyShoppingCartsQuery } from '../../../redux/features/order/orderApi';
 
 export default function OrderSummary() {
+  const { data: shoppingCartsData } = useGetMyShoppingCartsQuery(undefined);
+
+  const myShoppingCarts = shoppingCartsData.data;
+
+  const subTotal = myShoppingCarts?.reduce(
+    (prv, item) => prv + item.netAmount,
+    0
+  );
+  const shippingCharge = 100;
+  const total = subTotal + shippingCharge;
+
   return (
     <Flex
       vertical
@@ -15,16 +27,16 @@ export default function OrderSummary() {
       <h2>Order Summary</h2>
       {/* order price except shipping charge and discount */}
       <Flex justify="space-between">
-        <p>Subtotal (1 Item)</p>
+        <p>Subtotal ({myShoppingCarts.length} Item)</p>
         <p>
-          $ <span>700</span>
+          $ <span>{subTotal}</span>
         </p>
       </Flex>
       {/* shipping charge */}
       <Flex justify="space-between">
         <p>Shipping Fee</p>
         <p>
-          $ <span>100</span>
+          $ <span>{shippingCharge}</span>
         </p>
       </Flex>
       {/* discount coupon */}
@@ -47,7 +59,7 @@ export default function OrderSummary() {
       >
         <p>Total</p>
         <p>
-          $ <span>1000</span>
+          $ <span>{total}</span>
         </p>
       </Flex>
       <Button type="primary" block>

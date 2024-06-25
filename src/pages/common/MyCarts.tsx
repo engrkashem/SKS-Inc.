@@ -6,7 +6,7 @@ import { useGetMyShoppingCartsQuery } from '../../redux/features/order/orderApi'
 
 export default function MyCarts() {
   const queryParams = [
-    { name: 'limit', value: 10 },
+    { name: 'limit', value: 100 },
     { name: 'page', value: 1 },
   ];
 
