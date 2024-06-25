@@ -33,7 +33,20 @@ const orderApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['shoppingCarts'],
     }),
+
+    updateOrderQty: builder.mutation({
+      query: ({ orderId, data }) => ({
+        url: `/orders/${orderId}/update-qty`,
+        method: 'PATCH',
+        body: data,
+      }),
+      invalidatesTags: ['shoppingCarts'],
+    }),
   }),
 });
 
-export const { useAddToCartMutation, useGetMyShoppingCartsQuery } = orderApi;
+export const {
+  useAddToCartMutation,
+  useGetMyShoppingCartsQuery,
+  useUpdateOrderQtyMutation,
+} = orderApi;

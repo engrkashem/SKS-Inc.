@@ -1,14 +1,14 @@
 export type TOrder = {
   buyer: string;
-  createdAt: string;
+  product: string;
+  orderQty: number;
+  orderAmount: number;
+  netAmount: number;
   discount: number;
   isCancelled: boolean;
   isDelivered: boolean;
   isPaymentOk: boolean;
-  netAmount: number;
-  orderAmount: number;
-  orderQty: number;
-  product: string;
+  createdAt: string;
   updatedAt: string;
   __v: number;
   _id: string;

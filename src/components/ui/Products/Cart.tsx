@@ -1,30 +1,69 @@
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { Avatar, Checkbox, Flex, Input } from 'antd';
 import { useState } from 'react';
+import { toast } from 'sonner';
+import { useUpdateOrderQtyMutation } from '../../../redux/features/order/orderApi';
+import { TCreateResponse, TOrder } from '../../../types';
 
 export default function Cart({ order }) {
+  // local state/hook
   const [orderQty, setOrderQty] = useState(Number(order?.orderQty) || 0);
-  const [orderPrice, setOrderPrice] = useState(
-    Math.ceil(Number(order?.product?.price) * orderQty) || 0
-  );
-  const { product } = order;
+
+  // RTK hooks
+  const [updateOrderQty] = useUpdateOrderQtyMutation();
+
+  // data destructuring
+  const { product, netAmount } = order;
   const { name, img, description, price } = product;
-  //   console.log({ product });
-  // console.log({ order });
 
   //   event handlers
-  const handleOrderQtyChange = () => {
-    setOrderPrice(Math.ceil(orderQty * Number(price)));
+  const handleOrderQtyChange = async () => {
+    const toastId = toast.loading('Product is being added to your cart');
+
+    try {
+      const res = (await updateOrderQty({
+        orderId: order._id,
+        data: { orderQty },
+      })) as TCreateResponse<TOrder>;
+
+      if (res?.error) {
+        toast.error(res?.error?.data?.message, {
+          id: toastId,
+        });
+      } else {
+        toast.success(res?.data?.message, { id: toastId });
+      }
+    } catch {
+      toast.error('failed to update order quantity', { id: toastId });
+    }
   };
 
   const handleOrderQtyChangeButton = async (num) => {
+    const toastId = toast.loading('Product is being added to your cart');
+
     let newQty;
     await setOrderQty((prev) => {
       newQty = prev + num;
       newQty = newQty >= 0 ? newQty : 0;
       return newQty;
     });
-    setOrderPrice(Math.ceil(newQty * Number(price)));
+
+    try {
+      const res = (await updateOrderQty({
+        orderId: order._id,
+        data: { orderQty: newQty },
+      })) as TCreateResponse<TOrder>;
+
+      if (res?.error) {
+        toast.error(res?.error?.data?.message, {
+          id: toastId,
+        });
+      } else {
+        toast.success(res?.data?.message, { id: toastId });
+      }
+    } catch {
+      toast.error('failed to update order quantity', { id: toastId });
+    }
   };
 
   return (
@@ -51,7 +90,7 @@ export default function Cart({ order }) {
         <p>{description}</p>
       </div>
       <span style={{ fontWeight: '600', fontSize: '1.5em' }}>
-        $ <span>{orderPrice}</span>
+        $ <span>{netAmount}</span>
       </span>
 
       <Input
