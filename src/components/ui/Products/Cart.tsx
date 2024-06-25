@@ -4,25 +4,27 @@ import { useState } from 'react';
 
 export default function Cart({ order }) {
   const [orderQty, setOrderQty] = useState(Number(order?.orderQty) || 0);
+  const [orderPrice, setOrderPrice] = useState(
+    Math.ceil(Number(order?.product?.price) * orderQty) || 0
+  );
   const { product } = order;
   const { name, img, description, price } = product;
   //   console.log({ product });
   // console.log({ order });
-  console.log(orderQty);
 
   //   event handlers
   const handleOrderQtyChange = () => {
-    console.log('from handleOrderQtyChange', orderQty);
+    setOrderPrice(Math.ceil(orderQty * Number(price)));
   };
 
   const handleOrderQtyChangeButton = async (num) => {
-    let newNum;
+    let newQty;
     await setOrderQty((prev) => {
-      newNum = prev + num;
-      newNum = newNum >= 0 ? newNum : 0;
-      return newNum;
+      newQty = prev + num;
+      newQty = newQty >= 0 ? newQty : 0;
+      return newQty;
     });
-    console.log('from handleOrderQtyChangeButton', newNum);
+    setOrderPrice(Math.ceil(newQty * Number(price)));
   };
 
   return (
@@ -49,7 +51,7 @@ export default function Cart({ order }) {
         <p>{description}</p>
       </div>
       <span style={{ fontWeight: '600', fontSize: '1.5em' }}>
-        $ <span>{price}</span>
+        $ <span>{orderPrice}</span>
       </span>
 
       <Input
