@@ -26,8 +26,9 @@ const productApi = baseApi.injectEndpoints({
       },
       providesTags: ['products'],
       transformResponse: (response: TResponseRedux<TAllProductsResponse>) => {
-        const { categories, products } = response.data;
-        return { categories, products };
+        const { data, links, pagination } = response;
+        const { categories, products } = data;
+        return { categories, products, pagination, links };
       },
     }),
     getProduct: builder.query({
