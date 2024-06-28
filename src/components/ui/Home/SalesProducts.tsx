@@ -9,7 +9,7 @@ export default function SalesProducts() {
 
   if (isLoading) return <Loading />;
 
-  const { products } = allProductsData;
+  const products = allProductsData?.products ?? [];
 
   const shuffledProducts = [...products]
     .sort(() => Math.random() - 0.5)
@@ -17,7 +17,7 @@ export default function SalesProducts() {
 
   return (
     <div className="container">
-      <h1>Flash Sale</h1>
+      <h1 style={{ marginBottom: '20px' }}>Flash Sale</h1>
       <Row gutter={8}>
         {shuffledProducts.map((product) => (
           <SalesProductCard key={product._id} product={product} />

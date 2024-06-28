@@ -1,3 +1,5 @@
+import { TLinks, TPagination } from './global.type';
+
 export type TProduct = {
   _id: string;
   name: string;
@@ -15,4 +17,6 @@ export type TProduct = {
 export type TAllProductsResponse = {
   products: TProduct[];
   categories: string[];
+  links: TLinks;
+  pagination: TPagination;
 };

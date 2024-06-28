@@ -26,11 +26,13 @@ const productApi = baseApi.injectEndpoints({
       },
       providesTags: ['products'],
       transformResponse: (response: TResponseRedux<TAllProductsResponse>) => {
-        const { data, links, pagination } = response;
-        const { categories, products } = data;
+        const { links, pagination } = response;
+        const products = response.data?.products;
+        const categories = response.data?.categories;
         return { categories, products, pagination, links };
       },
     }),
+
     getProduct: builder.query({
       query: (id) => ({
         url: `/products/${id}`,
@@ -42,13 +44,6 @@ const productApi = baseApi.injectEndpoints({
         return { data, links };
       },
     }),
-    // updateStudentsMarks: builder.mutation({
-    //   query: (data) => ({
-    //     url: '/enrolled-courses/update-enrolled-course-marks',
-    //     method: 'PATCH',
-    //     body: data,
-    //   }),
-    // }),
   }),
 });
 
